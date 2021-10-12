@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { HikingSheetComponent } from './hiking-sheet/hiking-sheet.component';
     PlaceMapModule,
     HikingSheetModule,
     ParticipantsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
