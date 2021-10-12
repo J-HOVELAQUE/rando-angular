@@ -8,8 +8,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 import { PlaceListModule } from './place-list/place-list.module';
 import { PlaceMapModule } from './place-map/place-map.module';
+import { HikingSheetModule } from './hiking-sheet/hiking-sheet.module';
+import { ParticipantsModule } from './participants/participants.module';
+
 import { PlaceListComponent } from './place-list/place-list.component';
 import { PlaceMapComponent } from './place-map/place-map.component';
+import { HikingSheetComponent } from './hiking-sheet/hiking-sheet.component';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -19,6 +23,8 @@ import { PlaceMapComponent } from './place-map/place-map.component';
     HomeModule,
     PlaceListModule,
     PlaceMapModule,
+    HikingSheetModule,
+    ParticipantsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
