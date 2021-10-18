@@ -14,10 +14,6 @@ import { ParticipantsModule } from './participants/participants.module';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { PlaceListComponent } from './place-list/place-list.component';
-import { PlaceMapComponent } from './place-map/place-map.component';
-import { HikingSheetComponent } from './hiking-sheet/hiking-sheet.component';
-
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
   imports: [

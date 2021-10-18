@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
-
+import { FormBuilder, Validators, Validator } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -8,16 +8,26 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./create-place-modal.component.css'],
 })
 export class CreatePlaceModalComponent implements OnInit {
-  private eventsSubscription: Subscription;
-
   @Input() events: Observable<void>;
 
+  private eventsSubscription: Subscription;
   showModal = false;
 
-  constructor() {}
+  constructor(private _formBuilder: FormBuilder) {}
+
+  createPlaceForm = this._formBuilder.group({
+    name: ['', Validators.required],
+    altitudeInMeter: ['', Validators.required],
+    mountainLocation: ['', Validators.required],
+    picture: [null],
+  });
 
   onCloseModal() {
     this.showModal = false;
+  }
+
+  onSubmitNewPlace() {
+    console.log('Submit', this.createPlaceForm.value);
   }
 
   ngOnInit(): void {
