@@ -3,7 +3,7 @@ interface Location {
   coordinates: number[];
 }
 
-export interface Place {
+export interface IRecordedPlace {
   _id: number;
   name: string;
   mountainLocation: string;

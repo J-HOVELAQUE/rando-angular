@@ -12,6 +12,8 @@ import { PlaceMapModule } from './place-map/place-map.module';
 import { HikingSheetModule } from './hiking-sheet/hiking-sheet.module';
 import { ParticipantsModule } from './participants/participants.module';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { PlaceListComponent } from './place-list/place-list.component';
 import { PlaceMapComponent } from './place-map/place-map.component';
 import { HikingSheetComponent } from './hiking-sheet/hiking-sheet.component';
@@ -27,6 +29,7 @@ import { HikingSheetComponent } from './hiking-sheet/hiking-sheet.component';
     HikingSheetModule,
     ParticipantsModule,
     FontAwesomeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
