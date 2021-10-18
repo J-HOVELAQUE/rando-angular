@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
+
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-place-modal',
@@ -6,9 +8,26 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./create-place-modal.component.css'],
 })
 export class CreatePlaceModalComponent implements OnInit {
-  @Input() isDisplay = false;
+  private eventsSubscription: Subscription;
+
+  @Input() events: Observable<void>;
+
+  showModal = false;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  onCloseModal() {
+    this.showModal = false;
+  }
+
+  ngOnInit(): void {
+    this.eventsSubscription = this.events.subscribe(() => {
+      this.showModal = true;
+      console.log('TTTTTRRRIIIGGGEERRRR');
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.eventsSubscription.unsubscribe();
+  }
 }

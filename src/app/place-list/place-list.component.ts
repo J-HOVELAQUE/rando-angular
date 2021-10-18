@@ -5,6 +5,8 @@ import { IRecordedPlace } from '../models/place';
 
 import { Scavenger } from '@wishtack/rx-scavenger';
 
+import { Subject } from 'rxjs';
+
 @Component({
   selector: 'app-place-list',
   templateUrl: './place-list.component.html',
@@ -15,10 +17,13 @@ export class PlaceListComponent implements OnInit, OnDestroy {
   isCreatingPlace = false;
   private _scavenger = new Scavenger(this);
 
+  eventsSubject = new Subject<void>();
+
   constructor(private _placeRepo: PlaceRepoService) {}
 
   onCreatePlace() {
     this.isCreatingPlace = true;
+    this.eventsSubject.next();
   }
 
   ngOnInit(): void {
