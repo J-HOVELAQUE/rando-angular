@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IRecordedPlace } from '../models/place';
+import { IRecordedPlace, IPlaceToRecord } from '../models/place';
 
 interface IGetAllPlacesAnswer {
   message: string;
@@ -16,10 +16,11 @@ export class PlaceRepoService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * getAllPlaces
-   */
   public getAllPlaces() {
     return this.http.get<IGetAllPlacesAnswer>(this._urlApi);
+  }
+
+  public createPlace(place: IPlaceToRecord) {
+    return this.http.post(this._urlApi, place);
   }
 }

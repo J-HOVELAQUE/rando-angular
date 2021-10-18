@@ -11,3 +11,10 @@ export interface IRecordedPlace {
   picture?: string;
   location: Location;
 }
+
+export interface IPlaceToRecord {
+  name: string;
+  mountainLocation: string;
+  altitudeInMeters: number;
+  picture?: string;
+}

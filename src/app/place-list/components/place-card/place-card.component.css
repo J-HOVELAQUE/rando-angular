@@ -8,8 +8,7 @@
 .card-place {
   width: 18rem;
   margin: 15px;
-  border: brown 2px solid;
-  border-radius: 10px;
+  border: brown 1px solid;
 }
 
 .card-place-picture {
