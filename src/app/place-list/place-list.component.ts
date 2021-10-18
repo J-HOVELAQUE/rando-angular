@@ -12,9 +12,14 @@ import { Scavenger } from '@wishtack/rx-scavenger';
 })
 export class PlaceListComponent implements OnInit, OnDestroy {
   places: IRecordedPlace[] = [];
+  isCreatingPlace = false;
   private _scavenger = new Scavenger(this);
 
   constructor(private _placeRepo: PlaceRepoService) {}
+
+  onCreatePlace() {
+    this.isCreatingPlace = true;
+  }
 
   ngOnInit(): void {
     const request = this._placeRepo.getAllPlaces();

@@ -4,9 +4,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { PlaceListComponent } from './place-list.component';
 import { PlaceCardComponent } from './components/place-card/place-card.component';
+import { CreatePlaceModalComponent } from './components/create-place-modal/create-place-modal.component';
 
 @NgModule({
-  declarations: [PlaceListComponent, PlaceCardComponent],
+  declarations: [PlaceListComponent, PlaceCardComponent, CreatePlaceModalComponent],
   imports: [CommonModule, FontAwesomeModule],
   exports: [PlaceListComponent],
 })
