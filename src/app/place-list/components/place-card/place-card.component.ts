@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   faTrash,
   faPen,
@@ -8,12 +7,22 @@ import {
   faEye,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { IRecordedPlace } from 'src/app/models/place';
+
 @Component({
   selector: 'app-place-card',
   templateUrl: './place-card.component.html',
   styleUrls: ['./place-card.component.css'],
 })
 export class PlaceCardComponent implements OnInit {
+  @Input() place: IRecordedPlace = {
+    _id: 'N/A',
+    name: 'N/A',
+    mountainLocation: 'N/A',
+    altitudeInMeters: 0,
+    location: { type: 'Point', coordinates: [] },
+  };
+
   faPen = faPen;
   faTrash = faTrash;
   faImage = faImage;
@@ -22,5 +31,9 @@ export class PlaceCardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.place.picture) {
+      this.place.picture = '../../../../assets/montain_default.jpg';
+    }
+  }
 }

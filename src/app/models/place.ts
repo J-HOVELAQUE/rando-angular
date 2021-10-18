@@ -4,7 +4,7 @@ interface Location {
 }
 
 export interface IRecordedPlace {
-  _id: number;
+  _id: string;
   name: string;
   mountainLocation: string;
   altitudeInMeters: number;

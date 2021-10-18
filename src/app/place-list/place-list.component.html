@@ -1,12 +1,8 @@
 <h1 class="title hiking-title">Lieux de randonnée</h1>
 <button class="button hiking-button">Ajouter un lieux</button>
 
-<div class="card-place-container">
-  <app-place-card></app-place-card>
-  <app-place-card></app-place-card>
-  <app-place-card></app-place-card>
-  <app-place-card></app-place-card>
-  <app-place-card></app-place-card>
-  <app-place-card></app-place-card>
-  <app-place-card></app-place-card>
+<div class="card-place-container" >
+  <div *ngFor="let place of places">
+    <app-place-card [place]="place"></app-place-card>
+  </div>
 </div>
