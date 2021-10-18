@@ -1,16 +1,60 @@
 <div class="modal" [class.is-active]="showModal">
-  <div class="modal-background"></div>
+  <div class="modal-background" (click)="onCloseModal()"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close"></button>
+      <p class="modal-card-title modal-title">Créer un nouveau lieu</p>
     </header>
     <section class="modal-card-body">
-      <!-- Content ... -->
+      <form>
+        
+          <div class="modal-input-area">
+            <label class="modal-label" for="name">
+              Nom
+            </label>
+            <input type="text" placeholder="Nom du nouveau lieu" 
+            class="modal-input"
+            id="name"
+            name="name"
+            />
+          </div>
+          
+          <div class="modal-input-area">
+            <label class="modal-label" for="altitude">
+              Altitude
+            </label>
+            <input type="number"
+            class="modal-input"
+            id="altitude"
+            name="altitude"
+            />
+          </div>
+          
+          <div class="modal-input-area">
+            <label class="modal-label" for="mountainLocation">
+              Massif
+            </label>
+            <input type="text" placeholder="Nom du nouveau lieu" 
+            class="modal-input"
+            id="mountainLocation"
+            name="mountainLocation"
+            />
+          </div>
+          
+          <div class="modal-input-area">
+            <label class="modal-label" for="picture">
+              Image
+            </label>
+            <input type="file" name="file" 
+            class="create-place-file-input"
+            id="picture"
+            />
+          </div>
+      </form>
+      
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success">Save changes</button>
-      <button class="button" (click)="onCloseModal()">Cancel</button>
+      <button class="button validate-modal-button">Save changes</button>
+      <button class="button abort-modal-button" (click)="onCloseModal()">Cancel</button>
     </footer>
   </div>
 </div>

@@ -23,7 +23,6 @@ export class CreatePlaceModalComponent implements OnInit {
   ngOnInit(): void {
     this.eventsSubscription = this.events.subscribe(() => {
       this.showModal = true;
-      console.log('TTTTTRRRIIIGGGEERRRR');
     });
   }
 

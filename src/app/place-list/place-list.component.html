@@ -7,4 +7,4 @@
   </div>
 </div>
 
-<app-create-place-modal  [events]="eventsSubject"></app-create-place-modal> 
+<app-create-place-modal  [events]="eventsSubject.asObservable()"></app-create-place-modal> 
