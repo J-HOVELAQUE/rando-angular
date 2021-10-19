@@ -23,6 +23,7 @@ export class PlaceCardComponent implements OnInit {
     altitudeInMeters: 0,
     location: { type: 'Point', coordinates: [] },
   };
+  @Input() refreshPlace: () => void;
 
   faPen = faPen;
   faTrash = faTrash;

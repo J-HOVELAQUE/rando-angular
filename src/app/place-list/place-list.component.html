@@ -3,8 +3,13 @@
 
 <div class="card-place-container" >
   <div *ngFor="let place of places">
-    <app-place-card [place]="place"></app-place-card>
+    <app-place-card [place]="place" [refreshPlace]="refresh"></app-place-card>
   </div>
 </div>
 
-<app-create-place-modal  [events]="eventsSubject.asObservable()"></app-create-place-modal> 
+
+
+<app-create-place-modal
+[events]="eventsSubject.asObservable()"
+(refreshFromChild)="refreshPlaces()"
+></app-create-place-modal> 

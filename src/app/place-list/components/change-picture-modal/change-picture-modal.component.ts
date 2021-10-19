@@ -12,6 +12,7 @@ import { Scavenger } from '@wishtack/rx-scavenger';
 export class ChangePictureModalComponent implements OnInit, OnDestroy {
   @Input() event: Observable<void>;
   @Input() placeId: string;
+  @Input() placeName: string;
 
   showModal = false;
   isLoading = false;

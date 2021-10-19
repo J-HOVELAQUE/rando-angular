@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  OnDestroy,
+  EventEmitter,
+} from '@angular/core';
 import { FormBuilder, Validators, Validator } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { PlaceRepoService } from 'src/app/services/place-repo.service';
@@ -11,6 +18,8 @@ import { Scavenger } from '@wishtack/rx-scavenger';
 })
 export class CreatePlaceModalComponent implements OnInit {
   @Input() events: Observable<void>;
+
+  @Output() refreshFromChild = new EventEmitter<void>();
 
   private eventsSubscription: Subscription;
   private _scavenger = new Scavenger(this);
@@ -34,6 +43,7 @@ export class CreatePlaceModalComponent implements OnInit {
 
   onCloseModal() {
     this.showModal = false;
+    this.refreshFromChild.emit();
   }
 
   onSubmitNewPlace() {
@@ -43,10 +53,7 @@ export class CreatePlaceModalComponent implements OnInit {
       name: this.createPlaceForm.value.name,
       altitudeInMeters: this.createPlaceForm.value.altitudeInMeters,
       mountainLocation: this.createPlaceForm.value.mountainLocation,
-      picture: this.createPlaceForm.value.picture,
     };
-
-    delete newPlace.picture;
 
     const request = this._placeRepo.createPlace(newPlace);
     const answer = request
@@ -55,7 +62,7 @@ export class CreatePlaceModalComponent implements OnInit {
         (response) => {
           console.log(response);
           this._isRecordingPlace = false;
-          this.showModal = false;
+          this.onCloseModal();
         },
         (error) => {
           console.error('ERROR CAUGHT IN COMPONENT', error);

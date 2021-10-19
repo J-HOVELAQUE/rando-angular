@@ -1,18 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { PlaceRepoService } from '../services/place-repo.service';
 
 import { IRecordedPlace } from '../models/place';
 
 import { Scavenger } from '@wishtack/rx-scavenger';
 
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-place-list',
   templateUrl: './place-list.component.html',
   styleUrls: ['./place-list.component.css'],
 })
-export class PlaceListComponent implements OnInit, OnDestroy {
+export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
   places: IRecordedPlace[] = [];
   private _scavenger = new Scavenger(this);
 
@@ -20,11 +20,11 @@ export class PlaceListComponent implements OnInit, OnDestroy {
 
   constructor(private _placeRepo: PlaceRepoService) {}
 
-  onCreatePlace() {
-    this.eventsSubject.next();
+  refresh() {
+    console.log('REFRESHHHHH');
   }
 
-  ngOnInit(): void {
+  refreshPlaces() {
     const request = this._placeRepo.getAllPlaces();
     request
       .pipe(this._scavenger.collectByKey('getAllPlaces'))
@@ -32,6 +32,18 @@ export class PlaceListComponent implements OnInit, OnDestroy {
         console.log(answer);
         this.places = answer.places;
       });
+  }
+
+  onCreatePlace() {
+    this.eventsSubject.next();
+  }
+
+  ngOnInit(): void {
+    this.refreshPlaces();
+  }
+
+  ngOnChanges(): void {
+    this.refreshPlaces();
   }
 
   ngOnDestroy(): void {}
