@@ -11,6 +11,7 @@ import { Scavenger } from '@wishtack/rx-scavenger';
 })
 export class ChangePictureModalComponent implements OnInit, OnDestroy {
   @Input() event: Observable<void>;
+  @Input() placeId: string;
 
   showModal = false;
   private _selectedFile: File;
@@ -40,7 +41,10 @@ export class ChangePictureModalComponent implements OnInit, OnDestroy {
   }
 
   onSendPicture() {
-    const request = this._placeRepo.changePicture(this._selectedFile, 'ID');
+    const request = this._placeRepo.changePicture(
+      this._selectedFile,
+      this.placeId
+    );
     request.pipe(this._scavenger.collectByKey('change-picture')).subscribe(
       (answer) => {
         console.log(answer);

@@ -41,7 +41,10 @@
         </button>
       </div>
 
-      <app-change-picture-modal [event]="eventsSubject.asObservable()"></app-change-picture-modal>
+      <app-change-picture-modal
+      [event]="eventsSubject.asObservable()"
+      [placeId]="place._id"
+      ></app-change-picture-modal>
     </div>
   </div>
 </div>
