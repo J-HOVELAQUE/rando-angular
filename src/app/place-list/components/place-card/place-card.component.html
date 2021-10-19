@@ -1,4 +1,5 @@
 <div>
+
   
   <div class="card card-place">
     <div class="card-image">
@@ -12,12 +13,12 @@
           <p class="title is-4">{{place.name}}</p>
         </div>
       </div>
-
+      
       <div class="content">
         <p>Massif: {{place.mountainLocation}}</p>
         <p>Altitude: {{place.altitudeInMeters}}</p>
       </div>
-
+      
       <div class="card-button-zone">
         <button class="card-button" title="Editer">
           <fa-icon [icon]="faPen"></fa-icon>
@@ -26,11 +27,11 @@
         <button class="card-button" title="Supprimer">
           <fa-icon [icon]="faTrash"></fa-icon>
         </button>
-
-        <button class="card-button" title="Changer l'image">
+        
+        <button class="card-button" title="Changer l'image" (click)="onChangePicture()">
           <fa-icon [icon]="faImage"></fa-icon>
         </button>
-
+        
         <button class="card-button" title="Changer les coordonnées">
           <fa-icon [icon]="faLocationArrow"></fa-icon>
         </button>
@@ -40,6 +41,7 @@
         </button>
       </div>
 
+      <app-change-picture-modal [event]="eventsSubject.asObservable()"></app-change-picture-modal>
     </div>
   </div>
 </div>

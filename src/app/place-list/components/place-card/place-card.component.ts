@@ -6,6 +6,7 @@ import {
   faLocationArrow,
   faEye,
 } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
 
 import { IRecordedPlace } from 'src/app/models/place';
 
@@ -29,7 +30,13 @@ export class PlaceCardComponent implements OnInit {
   faLocationArrow = faLocationArrow;
   faEye = faEye;
 
+  eventsSubject: Subject<void> = new Subject<void>();
+
   constructor() {}
+
+  onChangePicture() {
+    this.eventsSubject.next();
+  }
 
   ngOnInit(): void {
     if (!this.place.picture) {

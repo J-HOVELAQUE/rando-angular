@@ -1,0 +1,35 @@
+<div class="modal" [class.is-active]="showModal">
+  <div class="modal-background" (click)="onCloseModal()"></div>
+  <form >
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title modal-title">Créer un nouveau lieu</p>
+      </header>
+      <section class="modal-card-body">
+
+        <div class="modal-input-area">
+          <label class="modal-label" for="picture">
+            Image
+          </label>
+          <input type="file"
+          name="file"
+          class="create-place-file-input"
+          id="picture"
+          (change)="onFileSelected($event)"/>
+        </div>
+
+      </section>
+      <footer class="modal-card-foot">
+
+        <button class="button validate-modal-button" type="submit">
+          Valider
+        </button>
+
+        <button class="button abort-modal-button" (click)="onCloseModal()" type="button">
+          Cancel
+        </button>
+
+      </footer>
+    </div>
+  </form>
+</div>
