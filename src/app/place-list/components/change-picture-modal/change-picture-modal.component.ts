@@ -14,7 +14,8 @@ export class ChangePictureModalComponent implements OnInit, OnDestroy {
   @Input() placeId: string;
 
   showModal = false;
-  private _selectedFile: File;
+  isLoading = false;
+  selectedFile: File;
   private _eventSubscription: Subscription;
   private _scavenger = new Scavenger(this);
 
@@ -36,18 +37,22 @@ export class ChangePictureModalComponent implements OnInit, OnDestroy {
     const file = event.target.files[0];
 
     if (file) {
-      this._selectedFile = file;
+      this.selectedFile = file;
     }
   }
 
   onSendPicture() {
+    this.isLoading = true;
+
     const request = this._placeRepo.changePicture(
-      this._selectedFile,
+      this.selectedFile,
       this.placeId
     );
     request.pipe(this._scavenger.collectByKey('change-picture')).subscribe(
       (answer) => {
         console.log(answer);
+        this.isLoading = false;
+        this.onCloseModal();
       },
       (error) => {
         console.log(error);

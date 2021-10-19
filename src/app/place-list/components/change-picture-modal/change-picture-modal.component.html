@@ -21,7 +21,13 @@
       </section>
       <footer class="modal-card-foot">
 
-        <button class="button validate-modal-button" type="button" (click)="onSendPicture()">
+        <button
+        class="button validate-modal-button"
+        type="button"
+        (click)="onSendPicture()"
+        [disabled]="!selectedFile"
+        [class.is-loading]="isLoading"
+        >
           Valider
         </button>
 
