@@ -23,4 +23,11 @@ export class PlaceRepoService {
   public createPlace(place: IPlaceToRecord) {
     return this.http.post(this._urlApi, place);
   }
+
+  public changePicture(picture: File, placeId: string) {
+    const formData = new FormData();
+    formData.append('placePicture', picture);
+
+    return this.http.put(`${this._urlApi}/${placeId}/picture`, formData);
+  }
 }

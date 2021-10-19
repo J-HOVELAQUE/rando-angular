@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 
+import { PlaceRepoService } from 'src/app/services/place-repo.service';
+import { Scavenger } from '@wishtack/rx-scavenger';
+
 @Component({
   selector: 'app-change-picture-modal',
   templateUrl: './change-picture-modal.component.html',
@@ -12,8 +15,9 @@ export class ChangePictureModalComponent implements OnInit, OnDestroy {
   showModal = false;
   private _selectedFile: File;
   private _eventSubscription: Subscription;
+  private _scavenger = new Scavenger(this);
 
-  constructor() {}
+  constructor(private _placeRepo: PlaceRepoService) {}
 
   onCloseModal() {
     this.showModal = false;
@@ -33,6 +37,18 @@ export class ChangePictureModalComponent implements OnInit, OnDestroy {
     if (file) {
       this._selectedFile = file;
     }
+  }
+
+  onSendPicture() {
+    const request = this._placeRepo.changePicture(this._selectedFile, 'ID');
+    request.pipe(this._scavenger.collectByKey('change-picture')).subscribe(
+      (answer) => {
+        console.log(answer);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit(): void {
