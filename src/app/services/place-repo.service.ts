@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { IRecordedPlace, IPlaceToRecord } from '../models/place';
+import { environment } from '../../environments/environment';
 
 interface IGetAllPlacesAnswer {
   message: string;
@@ -12,7 +13,8 @@ interface IGetAllPlacesAnswer {
   providedIn: 'root',
 })
 export class PlaceRepoService {
-  private _urlApi = 'http://localhost:3000/place';
+  // private _urlApi = 'http://localhost:3000/place';
+  private _urlApi = `${environment.api_url}/place`;
 
   constructor(private http: HttpClient) {}
 
