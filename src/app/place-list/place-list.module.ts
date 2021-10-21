@@ -9,6 +9,7 @@ import { CreatePlaceModalComponent } from './components/create-place-modal/creat
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePictureModalComponent } from './components/change-picture-modal/change-picture-modal.component';
 import { EditPlaceModalComponent } from './components/edit-place-modal/edit-place-modal.component';
+import { ValidationModalComponent } from '../components/validation-modal/validation-modal.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { EditPlaceModalComponent } from './components/edit-place-modal/edit-plac
     CreatePlaceModalComponent,
     ChangePictureModalComponent,
     EditPlaceModalComponent,
+    ValidationModalComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [PlaceListComponent],

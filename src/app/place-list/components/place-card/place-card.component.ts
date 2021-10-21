@@ -35,6 +35,7 @@ export class PlaceCardComponent implements OnInit {
 
   openEditPictureModal: Subject<void> = new Subject<void>();
   openEditPlaceModal: Subject<void> = new Subject<void>();
+  openDeleteValidationModal: Subject<void> = new Subject<void>();
 
   constructor() {}
 
@@ -44,6 +45,10 @@ export class PlaceCardComponent implements OnInit {
 
   onEditPlace() {
     this.openEditPlaceModal.next();
+  }
+
+  onAskPlaceDeletion() {
+    this.openDeleteValidationModal.next();
   }
 
   ngOnInit(): void {

@@ -1,0 +1,16 @@
+<div class="modal" [class.is-active]="showModal">
+  <div class="modal-background" (click)="onCloseModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">{{message}} ?</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Etes vous sûr ?</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Oui</button>
+      <button class="button" (click)="onCloseModal()">Non</button>
+    </footer>
+  </div>
+</div>

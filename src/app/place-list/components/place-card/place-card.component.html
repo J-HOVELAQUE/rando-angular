@@ -24,7 +24,7 @@
           <fa-icon [icon]="faPen"></fa-icon>
         </button>
 
-        <button class="card-button" title="Supprimer">
+        <button class="card-button" title="Supprimer" (click)="onAskPlaceDeletion()">
           <fa-icon [icon]="faTrash"></fa-icon>
         </button>
         
@@ -52,8 +52,13 @@
       [place]="place"
       (refreshFromChild)="refreshFromChild.emit()"
       >
-
       </app-edit-place-modal>
+
+      <app-validation-modal
+      [open]="openDeleteValidationModal.asObservable()"
+      [message]="'Supprimer ' + place.name"
+      ></app-validation-modal>
+
     </div>
   </div>
 </div>
