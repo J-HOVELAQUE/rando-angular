@@ -8,6 +8,7 @@ import { CreatePlaceModalComponent } from './components/create-place-modal/creat
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePictureModalComponent } from './components/change-picture-modal/change-picture-modal.component';
+import { EditPlaceModalComponent } from './components/edit-place-modal/edit-place-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ChangePictureModalComponent } from './components/change-picture-modal/c
     PlaceCardComponent,
     CreatePlaceModalComponent,
     ChangePictureModalComponent,
+    EditPlaceModalComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
   exports: [PlaceListComponent],
