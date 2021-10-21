@@ -1,0 +1,11 @@
+.card-button {
+  border-radius: 100%;
+  color: brown;
+  border: brown solid 1px;
+  background-color: white;
+}
+
+.card-button:hover {
+  background-color: brown;
+  color: white;
+}

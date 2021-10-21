@@ -13,7 +13,6 @@ import { HikingSheetModule } from './hiking-sheet/hiking-sheet.module';
 import { ParticipantsModule } from './participants/participants.module';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -27,7 +26,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ParticipantsModule,
     FontAwesomeModule,
     HttpClientModule,
-    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

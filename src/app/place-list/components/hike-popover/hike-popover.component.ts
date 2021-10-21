@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-hike-popover',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HikePopoverComponent implements OnInit {
   name = 'World';
+  faEye = faEye;
 
   constructor() {}
 
