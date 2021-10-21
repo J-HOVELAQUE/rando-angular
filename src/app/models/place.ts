@@ -18,3 +18,10 @@ export interface IPlaceToRecord {
   altitudeInMeters: number;
   picture?: string;
 }
+
+export interface IPlaceToUpdate {
+  name?: string;
+  mountainLocation?: string;
+  altitudeInMeters?: number;
+  picture?: string;
+}

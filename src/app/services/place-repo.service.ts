@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IRecordedPlace, IPlaceToRecord } from '../models/place';
+import {
+  IRecordedPlace,
+  IPlaceToRecord,
+  IPlaceToUpdate,
+} from '../models/place';
 import { environment } from '../../environments/environment';
 
 interface IGetAllPlacesAnswer {
@@ -31,7 +35,10 @@ export class PlaceRepoService {
   public changePicture(picture: File, placeId: string) {
     const formData = new FormData();
     formData.append('placePicture', picture);
-
     return this.http.put(`${this._urlApi}/${placeId}/picture`, formData);
+  }
+
+  public editPlace(placeData: IPlaceToUpdate, placeId: string) {
+    return this.http.put(`${this._urlApi}/${placeId}`, placeData);
   }
 }
