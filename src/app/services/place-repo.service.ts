@@ -41,4 +41,8 @@ export class PlaceRepoService {
   public editPlace(placeData: IPlaceToUpdate, placeId: string) {
     return this.http.put(`${this._urlApi}/${placeId}`, placeData);
   }
+
+  public deletePlace(placeId: string) {
+    return this.http.delete(`${this._urlApi}/${placeId}`);
+  }
 }
