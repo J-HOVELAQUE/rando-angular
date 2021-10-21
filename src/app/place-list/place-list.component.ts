@@ -20,10 +20,6 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(private _placeRepo: PlaceRepoService) {}
 
-  refresh() {
-    console.log('REFRESHHHHH');
-  }
-
   refreshPlaces() {
     const request = this._placeRepo.getAllPlaces();
     request

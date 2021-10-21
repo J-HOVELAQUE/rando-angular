@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import {
   faTrash,
   faPen,
@@ -7,15 +14,17 @@ import {
   faEye,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
+import { Scavenger } from '@wishtack/rx-scavenger';
 
 import { IRecordedPlace } from 'src/app/models/place';
+import { PlaceRepoService } from 'src/app/services/place-repo.service';
 
 @Component({
   selector: 'app-place-card',
   templateUrl: './place-card.component.html',
   styleUrls: ['./place-card.component.css'],
 })
-export class PlaceCardComponent implements OnInit {
+export class PlaceCardComponent implements OnInit, OnDestroy {
   @Input() place: IRecordedPlace = {
     _id: 'N/A',
     name: 'N/A',
@@ -36,8 +45,9 @@ export class PlaceCardComponent implements OnInit {
   openEditPictureModal: Subject<void> = new Subject<void>();
   openEditPlaceModal: Subject<void> = new Subject<void>();
   openDeleteValidationModal: Subject<void> = new Subject<void>();
+  private _scavenger = new Scavenger(this);
 
-  constructor() {}
+  constructor(private _placeRepo: PlaceRepoService) {}
 
   onChangePicture() {
     this.openEditPictureModal.next();
@@ -52,7 +62,16 @@ export class PlaceCardComponent implements OnInit {
   }
 
   onDeletePlace() {
-    console.log('DELETE', this.place.name);
+    const request = this._placeRepo.deletePlace(this.place._id);
+    request.pipe(this._scavenger.collectByKey('delete-place')).subscribe(
+      (response) => {
+        this.refreshFromChild.emit();
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -60,4 +79,6 @@ export class PlaceCardComponent implements OnInit {
       this.place.picture = '../../../../assets/montain_default.jpg';
     }
   }
+
+  ngOnDestroy(): void {}
 }
