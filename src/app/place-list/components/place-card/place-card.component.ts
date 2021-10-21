@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {
   faTrash,
   faPen,
@@ -24,6 +24,8 @@ export class PlaceCardComponent implements OnInit {
     location: { type: 'Point', coordinates: [] },
   };
   @Input() refreshPlace: () => void;
+
+  @Output() refreshFromChild = new EventEmitter<void>();
 
   faPen = faPen;
   faTrash = faTrash;

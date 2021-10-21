@@ -3,7 +3,11 @@
 
 <div class="card-place-container" >
   <div *ngFor="let place of places">
-    <app-place-card [place]="place" [refreshPlace]="refresh"></app-place-card>
+    <app-place-card
+    [place]="place"
+    [refreshPlace]="refresh"
+    (refreshFromChild)="refreshPlaces()"
+    ></app-place-card>
   </div>
 </div>
 

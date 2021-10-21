@@ -56,18 +56,16 @@ export class CreatePlaceModalComponent implements OnInit {
     };
 
     const request = this._placeRepo.createPlace(newPlace);
-    const answer = request
-      .pipe(this._scavenger.collectByKey('record-place'))
-      .subscribe(
-        (response) => {
-          console.log(response);
-          this._isRecordingPlace = false;
-          this.onCloseModal();
-        },
-        (error) => {
-          console.error('ERROR CAUGHT IN COMPONENT', error);
-        }
-      );
+    request.pipe(this._scavenger.collectByKey('record-place')).subscribe(
+      (response) => {
+        console.log(response);
+        this._isRecordingPlace = false;
+        this.onCloseModal();
+      },
+      (error) => {
+        console.error('ERROR CAUGHT IN COMPONENT', error);
+      }
+    );
   }
 
   ngOnInit(): void {

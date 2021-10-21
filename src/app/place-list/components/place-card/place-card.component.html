@@ -50,6 +50,7 @@
       <app-edit-place-modal
       [event]="openEditPlaceModal.asObservable()"
       [place]="place"
+      (refreshFromChild)="refreshFromChild.emit()"
       >
 
       </app-edit-place-modal>

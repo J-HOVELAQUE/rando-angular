@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
@@ -15,6 +22,8 @@ export class EditPlaceModalComponent implements OnInit {
   @Input() event: Observable<void>;
   @Input() place: IRecordedPlace;
 
+  @Output() refreshFromChild = new EventEmitter<void>();
+
   showModal = false;
   editPlaceForm: FormGroup;
   private _eventSubscription: Subscription;
@@ -27,6 +36,7 @@ export class EditPlaceModalComponent implements OnInit {
 
   onCloseModal() {
     this.showModal = false;
+    this.refreshFromChild.emit();
   }
 
   onEditPlace() {
@@ -37,8 +47,8 @@ export class EditPlaceModalComponent implements OnInit {
     );
 
     request.pipe(this._scavenger.collectByKey('edit-place')).subscribe(
-      (answer) => {
-        console.log('UPDATE', answer);
+      (response) => {
+        this.onCloseModal();
       },
       (error) => {
         console.log('Update fail', error);
@@ -58,5 +68,7 @@ export class EditPlaceModalComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this._eventSubscription.unsubscribe();
+  }
 }
