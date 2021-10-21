@@ -51,6 +51,10 @@ export class PlaceCardComponent implements OnInit {
     this.openDeleteValidationModal.next();
   }
 
+  onDeletePlace() {
+    console.log('DELETE', this.place.name);
+  }
+
   ngOnInit(): void {
     if (!this.place.picture) {
       this.place.picture = '../../../../assets/montain_default.jpg';

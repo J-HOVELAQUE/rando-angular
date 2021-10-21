@@ -57,6 +57,7 @@
       <app-validation-modal
       [open]="openDeleteValidationModal.asObservable()"
       [message]="'Supprimer ' + place.name"
+      (validate)="onDeletePlace()"
       ></app-validation-modal>
 
     </div>

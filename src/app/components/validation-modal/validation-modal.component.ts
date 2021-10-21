@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Subscription, Observer, Observable } from 'rxjs';
 
 @Component({
@@ -10,6 +17,8 @@ export class ValidationModalComponent implements OnInit, OnDestroy {
   @Input() open: Observable<void>;
   @Input() message: string;
 
+  @Output() validate = new EventEmitter<void>();
+
   showModal = false;
   private _eventSubscription: Subscription;
 
@@ -17,6 +26,10 @@ export class ValidationModalComponent implements OnInit, OnDestroy {
 
   onCloseModal() {
     this.showModal = false;
+  }
+
+  onValidate() {
+    this.validate.emit();
   }
 
   ngOnInit(): void {
