@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { IRecordedPlace, IPlaceToRecord } from '../models/place';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 interface IGetAllPlacesAnswer {
   message: string;
