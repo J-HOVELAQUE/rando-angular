@@ -10,6 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePictureModalComponent } from './components/change-picture-modal/change-picture-modal.component';
 import { EditPlaceModalComponent } from './components/edit-place-modal/edit-place-modal.component';
 import { ValidationModalComponent } from '../components/validation-modal/validation-modal.component';
+import { HikePopoverComponent } from './components/hike-popover/hike-popover.component';
+
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,14 @@ import { ValidationModalComponent } from '../components/validation-modal/validat
     ChangePictureModalComponent,
     EditPlaceModalComponent,
     ValidationModalComponent,
+    HikePopoverComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    NgbPopoverModule,
+  ],
   exports: [PlaceListComponent],
 })
 export class PlaceListModule {}
