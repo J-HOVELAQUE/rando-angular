@@ -1,7 +1,7 @@
 <ng-template #popContent>
   <aside class="menu">
     <ul class="menu-list">
-      <li *ngFor="let hike of hikes"><a>{{hike.date}}</a></li>
+      <li *ngFor="let hike of hikes"><a>{{hike.date | date:"longDate"}}</a></li>
       <li>
        <button>New</button>
       </li>

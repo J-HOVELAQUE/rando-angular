@@ -25,7 +25,6 @@ export class HikePopoverComponent implements OnInit, OnDestroy {
     request.pipe(this._scavenger.collectByKey('load-hike')).subscribe(
       (response) => {
         this.hikes = response.hikes;
-        console.log('LOADED', response);
       },
       (error) => {
         console.error('LOADING FAILED', error);
