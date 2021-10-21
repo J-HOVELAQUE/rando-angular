@@ -31,12 +31,17 @@ export class PlaceCardComponent implements OnInit {
   faLocationArrow = faLocationArrow;
   faEye = faEye;
 
-  eventsSubject: Subject<void> = new Subject<void>();
+  openEditPictureModal: Subject<void> = new Subject<void>();
+  openEditPlaceModal: Subject<void> = new Subject<void>();
 
   constructor() {}
 
   onChangePicture() {
-    this.eventsSubject.next();
+    this.openEditPictureModal.next();
+  }
+
+  onEditPlace() {
+    this.openEditPlaceModal.next();
   }
 
   ngOnInit(): void {

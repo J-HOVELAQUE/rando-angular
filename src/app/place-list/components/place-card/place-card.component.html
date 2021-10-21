@@ -20,7 +20,7 @@
       </div>
       
       <div class="card-button-zone">
-        <button class="card-button" title="Editer" (click)="refreshPlace()">
+        <button class="card-button" title="Editer" (click)="onEditPlace()">
           <fa-icon [icon]="faPen"></fa-icon>
         </button>
 
@@ -42,10 +42,18 @@
       </div>
 
       <app-change-picture-modal
-      [event]="eventsSubject.asObservable()"
+      [event]="openEditPictureModal.asObservable()"
       [placeId]="place._id"
       [placeName]="place.name"
       ></app-change-picture-modal>
+
+      <app-edit-place-modal
+      [event]="openEditPlaceModal.asObservable()"
+      [placeId]="place._id"
+      [placeName]="place.name"
+      >
+
+      </app-edit-place-modal>
     </div>
   </div>
 </div>
