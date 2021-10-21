@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,10 +7,17 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./hike-popover.component.css'],
 })
 export class HikePopoverComponent implements OnInit {
+  @Input() placeId: string;
   name = 'World';
   faEye = faEye;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  onLoadHike() {
+    console.log('LOAD', this.placeId);
+  }
+
+  ngOnInit(): void {
+    console.log('INIT');
+  }
 }

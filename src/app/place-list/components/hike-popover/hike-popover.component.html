@@ -1,4 +1,25 @@
-<button type="button" placement="top" class="card-button" title="Voir les sorties"
-  ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
+<ng-template #popContent>
+  <aside class="menu">
+    <ul class="menu-list">
+      <li><a>Rando</a></li>
+      <li><a>Rando</a></li>
+      <li><a>Rando</a></li>
+      <li><a>Rando</a></li>
+      <li>
+       <button>New</button>
+      </li>
+    </ul>
+  </aside>
+</ng-template>
+
+<button
+type="button"
+class="card-button"
+title="Voir les sorties"
+[ngbPopover]="popContent"
+[autoClose]="true"
+[animation]="true"
+(click)="onLoadHike()"
+>
   <fa-icon [icon]="faEye"></fa-icon>
 </button>
