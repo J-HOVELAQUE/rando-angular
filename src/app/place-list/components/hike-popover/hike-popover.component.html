@@ -1,7 +1,7 @@
 <ng-template #popContent>
   <aside class="menu">
     <ul class="menu-list">
-      <li *ngFor="let hike of hikes"><a>{{hike.date | date:"longDate"}}</a></li>
+      <li *ngFor="let hike of hikes"><a (click)="onLoadHike(hike)">{{hike.date | date:"longDate"}}</a></li>
       <li>
        <button>New</button>
       </li>
@@ -16,7 +16,7 @@ title="Voir les sorties"
 [ngbPopover]="popContent"
 [autoClose]="true"
 [animation]="true"
-(click)="onLoadHike()"
+(click)="onLoadHikesForThisPlace()"
 >
   <fa-icon [icon]="faEye"></fa-icon>
 </button>
