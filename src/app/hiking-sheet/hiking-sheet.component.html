@@ -1,6 +1,6 @@
 <div>
     <div class="display">
-      <h1 class="title hiking-title">Titre</h1>
+      <h1 class="title hiking-title">Sortie à {{store.activeHike?.place?.name}}</h1>
       <button class="hiking-button" 
         >
         Editer cette sortie
@@ -11,25 +11,25 @@
       </button>
 
       <div class="hiking-box">
-        <img src={picture} alt="une photo du lieu de la randonée" class="hiking-sheet-image">
+        <img [src]="picture" alt="une photo du lieu de la randonée" class="hiking-sheet-image">
         <div class="hiking-data">
           <h4>
-              Dénivelé cumulé :
+              Dénivelé cumulé : {{store.activeHike?.elevationInMeters}}
           </h4>
           <h4>
-              Distance :
+              Distance : {{store.activeHike?.distanceInMeters}}
           </h4>
           <h4>
-              Altitude de départ :
+              Altitude de départ : {{store.activeHike?.startingAltitude}}
           </h4>
           <h4>
-              Altitude d'arrivé :
+              Altitude d'arrivé : {{store.activeHike?.arrivalAltitude}}
           </h4>
           <h4>
-              Durée de la sortie :
+              Durée de la sortie : {{store.activeHike?.durationInMinutes}}
           </h4>
           <h4>
-              Date de la sortie :
+              Date de la sortie : {{store.activeHike?.date | date:"longDate"}}
           </h4>
         </div>
       </div>
