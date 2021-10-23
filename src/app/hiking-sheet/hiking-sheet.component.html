@@ -1,6 +1,6 @@
 <div>
     <div class="display">
-      <h1 class="title hiking-title">Sortie à {{store.activeHike?.place?.name}}</h1>
+      <h1 class="title is-1 hiking-title">Sortie à {{store.activeHike?.place?.name}}</h1>
       <button class="hiking-button" 
         >
         Editer cette sortie
@@ -13,33 +13,42 @@
       <div class="hiking-box">
         <img [src]="picture" alt="une photo du lieu de la randonée" class="hiking-sheet-image">
         <div class="hiking-data">
-          <h4>
+          <h3 class="hiking-sheet-bottom-title title is-4">Informations</h3>
+          <p>
               Dénivelé cumulé : {{store.activeHike?.elevationInMeters}}
-          </h4>
-          <h4>
+          </p>
+          <p>
               Distance : {{store.activeHike?.distanceInMeters}}
-          </h4>
-          <h4>
+          </p>
+          <p>
               Altitude de départ : {{store.activeHike?.startingAltitude}}
-          </h4>
-          <h4>
+          </p>
+          <p>
               Altitude d'arrivé : {{store.activeHike?.arrivalAltitude}}
-          </h4>
-          <h4>
+          </p>
+          <p>
               Durée de la sortie : {{store.activeHike?.durationInMinutes}}
-          </h4>
-          <h4>
+          </p>
+          <p>
               Date de la sortie : {{store.activeHike?.date | date:"longDate"}}
-          </h4>
+          </p>
         </div>
       </div>
+
       <div class="hiking-box">
         <div class="participants-box">
-          <h3 class="hiking-sheet-bottom-title">Participants: </h3>
-         
+          <h3 class="hiking-sheet-bottom-title title is-4">Participants: </h3>
+          <aside class="menu">
+            <ul class="menu-list">
+              <li *ngFor="let participant of store.activeHike?.participants">
+                <a>{{participant.name}}</a>
+              </li>
+            </ul>
+          </aside>
         </div>
         <div class="desc-box">
-          <h3 class="hiking-sheet-bottom-title">Description: </h3>
+          <h3 class="hiking-sheet-bottom-title title is-4">Description: </h3>
+          <p>{{store.activeHike?.description}}</p>
         </div>
       </div>
     </div>

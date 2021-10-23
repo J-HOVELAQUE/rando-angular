@@ -11,4 +11,5 @@ export interface IRecordedHike {
   date: Date;
   place: IRecordedPlace;
   participants: IRecordedParticipant[];
+  description?: string;
 }

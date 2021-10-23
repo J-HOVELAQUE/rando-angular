@@ -25,8 +25,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: brown 4px solid;
-  border-radius: 10px;
+  border: brown 2px solid;
+  border-radius: 5px;
 }
 
 .participants-box {
@@ -46,7 +46,7 @@
   color: brown;
 }
 
-@media all and (min-width: 1400px) {
+@media all and (min-width: 900px) {
   .hiking-box {
     display: flex;
     justify-content: center;
