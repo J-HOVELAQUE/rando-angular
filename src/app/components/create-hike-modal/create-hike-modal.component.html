@@ -1,6 +1,6 @@
 <div class="modal" [class.is-active]="isOpen">
   <div class="modal-background" (click)="onCloseModal()"></div>
-  <form>
+  <form [formGroup]="newHikeForm" (ngSubmit)="onSubmitNewHike()">
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title modal-title">Créer une nouvelle randonnée à {{placeWhereCreateNewHike?.name}}</p>
@@ -15,6 +15,7 @@
           class="modal-input"
           id="hikeDate"
           name="hikeDate"
+          formControlName="date"
           />
         </div>
         
@@ -26,6 +27,7 @@
           <input class="modal-input"
           id="hikeDuration"
           name="hikeDuration"
+          formControlName="durationInMinutes"
           />
         </div>
         
@@ -37,6 +39,7 @@
           class="modal-input"
           id="hikeElevation"
           name="hikeElevation"
+          formControlName="elevationInMeters"
           />
         </div>
         
@@ -48,6 +51,7 @@
           class="modal-input"
           id="hikeDistance"
           name="hikeDistance"
+          formControlName="distanceInMeters"
           />
         </div>
         
@@ -59,6 +63,7 @@
           class="modal-input"
           id="hikeElevationDeparture"
           name="hikeElevationDeparture"
+          formControlName="startingAltitude"
           />
         </div>
         
@@ -70,6 +75,7 @@
           class="modal-input"
           id="hikeElevationArrival"
           name="hikeElevationArrival"
+          formControlName="arrivalAltitude"
           />
         </div>
         
@@ -81,12 +87,14 @@
                       class="modal-input"
                       id="hikeDescription"
                       name="hikeDescription"
+                      formControlName="description"
                     ></textarea>
                   </div>
-        <div class="modal-input-area">
-                  <p>Participants :</p>
-                  <app-select-participants></app-select-participants>
-                  </div>
+        
+          <app-select-participants (changeSelectedParticipants)="onChangeSelectedParticipants($event)">
+
+          </app-select-participants>
+                 
        
       </section>
       <footer class="modal-card-foot">
