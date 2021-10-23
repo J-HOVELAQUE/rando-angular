@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
+import { MatFormFieldAppearance } from '@angular/material/form-field';
+
 @Component({
   selector: 'app-select-participants',
   templateUrl: './select-participants.component.html',
