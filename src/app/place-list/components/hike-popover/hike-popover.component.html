@@ -3,11 +3,12 @@
     <ul class="menu-list">
       <li *ngFor="let hike of hikes"><a (click)="onLoadHike(hike)">{{hike.date | date:"longDate"}}</a></li>
       <li>
-       <button>New</button>
+       <button (click)="onCreateNewHike()">New</button>
       </li>
     </ul>
   </aside>
 </ng-template>
+<app-create-hike-modal [openModal]="creatingNewHike.asObservable()"></app-create-hike-modal>
 
 <button
 type="button"
