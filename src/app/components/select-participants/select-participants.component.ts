@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { ParticipantRepoService } from 'src/app/services/participant-repo.service';
+import { IRecordedParticipant } from 'src/app/models/participant';
 
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 
@@ -11,15 +12,8 @@ import { MatFormFieldAppearance } from '@angular/material/form-field';
   styleUrls: ['./select-participants.component.css'],
 })
 export class SelectParticipantsComponent implements OnInit {
-  toppings = new FormControl();
-  toppingList: string[] = [
-    'Extra cheese',
-    'Mushroom',
-    'Onion',
-    'Pepperoni',
-    'Sausage',
-    'Tomato',
-  ];
+  participants = new FormControl();
+  participantList: IRecordedParticipant[] = [];
 
   constructor(private _participantRepo: ParticipantRepoService) {}
 
@@ -32,7 +26,7 @@ export class SelectParticipantsComponent implements OnInit {
 
     request.subscribe(
       (response) => {
-        console.log('LOADED', response);
+        this.participantList = response.places;
       },
       (error) => {
         console.error('get participants failed', error);
