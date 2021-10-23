@@ -11,9 +11,11 @@ import { ChangePictureModalComponent } from './components/change-picture-modal/c
 import { EditPlaceModalComponent } from './components/edit-place-modal/edit-place-modal.component';
 import { ValidationModalComponent } from '../components/validation-modal/validation-modal.component';
 import { HikePopoverComponent } from './components/hike-popover/hike-popover.component';
-import { CreateHikeModalComponent } from '../create-hike-modal/create-hike-modal.component';
+import { CreateHikeModalComponent } from '../components/create-hike-modal/create-hike-modal.component';
+import { SelectParticipantsComponent } from '../components/select-participants/select-participants.component';
 
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,14 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
     ValidationModalComponent,
     HikePopoverComponent,
     CreateHikeModalComponent,
+    SelectParticipantsComponent,
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     NgbPopoverModule,
+    MatSelectModule,
   ],
   exports: [PlaceListComponent],
 })
