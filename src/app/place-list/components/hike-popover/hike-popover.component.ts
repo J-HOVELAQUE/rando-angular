@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { HikeRepoService } from 'src/app/services/hike-repo.service';
@@ -21,7 +22,8 @@ export class HikePopoverComponent implements OnInit, OnDestroy {
 
   constructor(
     private _hikeRepo: HikeRepoService,
-    private _store: StoreService
+    private _store: StoreService,
+    private _router: Router
   ) {}
 
   onLoadHikesForThisPlace() {
@@ -38,6 +40,7 @@ export class HikePopoverComponent implements OnInit, OnDestroy {
 
   onLoadHike(hike: IRecordedHike) {
     this._store.activeHike = hike;
+    this._router.navigate(['/hike']);
   }
 
   ngOnInit(): void {}
