@@ -14,6 +14,10 @@ export class CreateHikeModalComponent implements OnInit, OnDestroy {
 
   constructor() {}
 
+  onCloseModal() {
+    this.isOpen = false;
+  }
+
   ngOnInit(): void {
     this._openModalSubscription = this.openModal.subscribe(() => {
       this.isOpen = true;
