@@ -2,6 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
+import { IRecordedParticipant } from '../models/participant';
+
+interface IGetParticipantsResponse {
+  message: string;
+  places: IRecordedParticipant[];
+}
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +18,6 @@ export class ParticipantRepoService {
   constructor(private _http: HttpClient) {}
 
   getAllParticipants() {
-    return this._http.get(this._endpoint);
+    return this._http.get<IGetParticipantsResponse>(this._endpoint);
   }
 }

@@ -1,6 +1,12 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { HikeRepoService } from 'src/app/services/hike-repo.service';
@@ -16,10 +22,11 @@ import { Scavenger } from '@wishtack/rx-scavenger';
 })
 export class HikePopoverComponent implements OnInit, OnDestroy {
   @Input() placeId: string;
-  name = 'World';
+
+  @Output() createNewHike = new EventEmitter();
+
   faEye = faEye;
   hikes: IRecordedHike[];
-  creatingNewHike = new Subject<void>();
 
   private _scavenger = new Scavenger(this);
 
@@ -47,7 +54,7 @@ export class HikePopoverComponent implements OnInit, OnDestroy {
   }
 
   onCreateNewHike() {
-    this.creatingNewHike.next();
+    this.createNewHike.emit(this.placeId);
   }
 
   ngOnInit(): void {}

@@ -35,7 +35,7 @@
           <fa-icon [icon]="faLocationArrow"></fa-icon>
         </button>
 
-        <app-hike-popover [placeId]="place._id">
+        <app-hike-popover [placeId]="place._id" (createNewHike)="onCreateNewHike()">
         </app-hike-popover>
 
       </div>

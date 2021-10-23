@@ -6,6 +6,7 @@
     <app-place-card
     [place]="place"
     (refreshFromChild)="refreshPlaces()"
+    (createNewHike)="onCreateHike($event)"
     ></app-place-card>
   </div>
 </div>
@@ -13,8 +14,13 @@
 
 
 <app-create-place-modal
-[events]="eventsSubject.asObservable()"
+[events]="createNewPlace.asObservable()"
 (refreshFromChild)="refreshPlaces()"
 ></app-create-place-modal>
+
+<app-create-hike-modal
+[openModal]="createNewHike.asObservable()"
+[placeWhereCreateNewHike]="placeWhereCreateNewHike"
+></app-create-hike-modal>
 
 <app-hike-popover></app-hike-popover>

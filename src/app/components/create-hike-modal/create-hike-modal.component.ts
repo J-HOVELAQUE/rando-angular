@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
+import { IRecordedPlace } from 'src/app/models/place';
+
 @Component({
   selector: 'app-create-hike-modal',
   templateUrl: './create-hike-modal.component.html',
@@ -8,6 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class CreateHikeModalComponent implements OnInit, OnDestroy {
   @Input() openModal: Observable<void>;
+  @Input() placeWhereCreateNewHike: IRecordedPlace;
 
   isOpen = false;
   private _openModalSubscription: Subscription;

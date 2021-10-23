@@ -35,6 +35,7 @@ export class PlaceCardComponent implements OnInit, OnDestroy {
   @Input() refreshPlace: () => void;
 
   @Output() refreshFromChild = new EventEmitter<void>();
+  @Output() createNewHike = new EventEmitter();
 
   faPen = faPen;
   faTrash = faTrash;
@@ -59,6 +60,10 @@ export class PlaceCardComponent implements OnInit, OnDestroy {
 
   onAskPlaceDeletion() {
     this.openDeleteValidationModal.next();
+  }
+
+  onCreateNewHike() {
+    this.createNewHike.emit(this.place);
   }
 
   onDeletePlace() {
