@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IRecordedHike } from '../models/hike';
+import { IRecordedHike, IHikeToRecord } from '../models/hike';
 
 import { environment } from 'src/environments/environment';
 
@@ -22,5 +22,9 @@ export class HikeRepoService {
     return this.http.get<IGetByPlaceAnswer>(
       `${this._urlApi}/byPlace/${placeId}`
     );
+  }
+
+  public createHike(newHike: IHikeToRecord) {
+    return this.http.post(this._urlApi, newHike);
   }
 }

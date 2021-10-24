@@ -13,3 +13,15 @@ export interface IRecordedHike {
   participants: IRecordedParticipant[];
   description?: string;
 }
+
+export interface IHikeToRecord {
+  durationInMinutes: string;
+  elevationInMeters: string;
+  distanceInMeters: string;
+  startingAltitude: string;
+  arrivalAltitude: string;
+  date: Date;
+  place: IRecordedPlace;
+  participants: IRecordedParticipant[];
+  description?: string;
+}
