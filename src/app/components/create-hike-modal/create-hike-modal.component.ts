@@ -3,8 +3,10 @@ import { Observable, Subscription } from 'rxjs';
 
 import { IRecordedPlace } from 'src/app/models/place';
 import { IRecordedParticipant } from 'src/app/models/participant';
+import { HikeRepoService } from 'src/app/services/hike-repo.service';
 
 import { FormBuilder } from '@angular/forms';
+import { Scavenger } from '@wishtack/rx-scavenger';
 
 @Component({
   selector: 'app-create-hike-modal',
@@ -18,8 +20,12 @@ export class CreateHikeModalComponent implements OnInit, OnDestroy {
   isOpen = false;
   selectedParticipants: IRecordedParticipant[] = [];
   private _openModalSubscription: Subscription;
+  private _scavenger = new Scavenger(this);
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _hikeRepo: HikeRepoService
+  ) {}
 
   newHikeForm = this._formBuilder.group({
     date: [''],
@@ -48,7 +54,13 @@ export class CreateHikeModalComponent implements OnInit, OnDestroy {
       place: this.placeWhereCreateNewHike._id,
       participants: participants,
     };
-    console.log('CREATE HIKE', newHike);
+
+    const request = this._hikeRepo.createHike(newHike);
+
+    request.pipe(this._scavenger.collectByKey('create-hike')).subscribe(
+      (response) => this.onCloseModal(),
+      (error) => console.error(error)
+    );
   }
 
   ngOnInit(): void {

@@ -41,7 +41,7 @@
           <aside class="menu">
             <ul class="menu-list">
               <li *ngFor="let participant of store.activeHike?.participants">
-                <a>{{participant.name}}</a>
+                <a>{{participant.firstname}} {{participant.name}}</a>
               </li>
             </ul>
           </aside>
