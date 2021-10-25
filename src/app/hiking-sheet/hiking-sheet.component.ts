@@ -16,7 +16,7 @@ export class HikingSheetComponent implements OnInit {
     if (this.store.activeHike?.place?.picture) {
       this.picture = this.store.activeHike.place.picture;
     } else {
-      this.picture = '';
+      this.picture = '../../assets/montain_default.jpg';
     }
   }
 }
