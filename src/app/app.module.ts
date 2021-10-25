@@ -14,6 +14,7 @@ import { ParticipantsModule } from './participants/participants.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
@@ -28,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FontAwesomeModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    LeafletModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
