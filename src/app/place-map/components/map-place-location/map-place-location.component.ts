@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { latLng, tileLayer, marker, polygon, circle, icon } from 'leaflet';
+import { latLng, tileLayer, marker, polygon, circle, icon, Map } from 'leaflet';
 
 @Component({
   selector: 'app-map-place-location',
@@ -7,31 +7,41 @@ import { latLng, tileLayer, marker, polygon, circle, icon } from 'leaflet';
   styleUrls: ['./map-place-location.component.css'],
 })
 export class MapPlaceLocationComponent implements OnInit {
+  map: Map;
+
+  markerIcon = {
+    icon: icon({
+      iconSize: [25, 41],
+      iconAnchor: [13, 41],
+      iconUrl: 'leaflet/marker-icon.png',
+      shadowUrl: 'leaflet/marker-shadow.png',
+    }),
+  };
+
   options = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
       }),
-      circle([46.95, -122], { radius: 5000 }),
-      polygon([
-        [46.8, -121.85],
-        [46.92, -121.92],
-        [46.87, -121.8],
-      ]),
-      marker([46.879966, -121.726909], {
-        icon: icon({
-          iconSize: [25, 41],
-          iconAnchor: [13, 41],
-          iconUrl: 'leaflet/marker-icon.png',
-          shadowUrl: 'leaflet/marker-shadow.png',
-        }),
-      }),
     ],
     zoom: 7,
-    center: latLng([46.879966, -121.726909]),
+    center: latLng([46.132, 6.592]),
   };
 
   constructor() {}
+
+  initMarker() {
+    marker([46.132, 6.592], this.markerIcon)
+      .addTo(this.map)
+      .addEventListener('click', () => {
+        console.log('CLICK');
+      });
+  }
+
+  onMapReady(map: L.Map) {
+    this.map = map;
+    this.initMarker();
+  }
 
   ngOnInit(): void {}
 }
