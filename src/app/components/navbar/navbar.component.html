@@ -3,9 +3,15 @@
     <a class="navbar-item" routerLink="/home">
       <h3><strong>Rando</strong></h3>
     </a>
+    <a role="button" class="navbar-burger is-active" aria-label="menu" aria-expanded="true" data-target="hike-navbar">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
 
-  <div class="navbar-menu">
+
+  <div class="navbar-menu" id="hike-navbar">
     <div class="navbar-start">
 
     <div class="navbar-item has-dropdown" [class.is-active]="showDropdown">

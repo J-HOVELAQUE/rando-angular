@@ -38,6 +38,7 @@ export class CreateHikeModalComponent implements OnInit, OnDestroy {
   });
 
   onCloseModal() {
+    this.newHikeForm.reset();
     this.isOpen = false;
   }
 

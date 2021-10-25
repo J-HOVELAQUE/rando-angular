@@ -43,6 +43,7 @@ export class CreatePlaceModalComponent implements OnInit {
 
   onCloseModal() {
     this.showModal = false;
+    this.createPlaceForm.reset();
     this.refreshFromChild.emit();
   }
 
@@ -60,6 +61,7 @@ export class CreatePlaceModalComponent implements OnInit {
       (response) => {
         console.log(response);
         this._isRecordingPlace = false;
+        this.createPlaceForm.reset();
         this.onCloseModal();
       },
       (error) => {
