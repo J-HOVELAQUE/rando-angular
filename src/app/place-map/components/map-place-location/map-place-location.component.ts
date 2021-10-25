@@ -35,7 +35,8 @@ export class MapPlaceLocationComponent implements OnInit {
       .addTo(this.map)
       .addEventListener('click', () => {
         console.log('CLICK');
-      });
+      })
+      .bindTooltip('TEST');
   }
 
   onMapReady(map: L.Map) {
