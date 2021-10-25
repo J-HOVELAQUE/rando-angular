@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { latLng, tileLayer, marker, polygon, circle, icon, Map } from 'leaflet';
+import { PlaceRepoService } from 'src/app/services/place-repo.service';
+import { Scavenger } from '@wishtack/rx-scavenger';
+
+import { IRecordedPlace } from 'src/app/models/place';
 
 @Component({
   selector: 'app-map-place-location',
   templateUrl: './map-place-location.component.html',
   styleUrls: ['./map-place-location.component.css'],
 })
-export class MapPlaceLocationComponent implements OnInit {
+export class MapPlaceLocationComponent implements OnInit, OnDestroy {
   map: Map;
+  private _scavenger = new Scavenger(this);
 
   markerIcon = {
     icon: icon({
@@ -24,25 +29,42 @@ export class MapPlaceLocationComponent implements OnInit {
         attribution: '&copy; OpenStreetMap contributors',
       }),
     ],
-    zoom: 7,
+    zoom: 8,
     center: latLng([46.132, 6.592]),
   };
 
-  constructor() {}
+  constructor(private _plaveRepo: PlaceRepoService) {}
 
-  initMarker() {
-    marker([46.132, 6.592], this.markerIcon)
-      .addTo(this.map)
-      .addEventListener('click', () => {
-        console.log('CLICK');
-      })
-      .bindTooltip('TEST');
+  initMarker(places: IRecordedPlace[]) {
+    places.forEach((place) => {
+      if (place.location.coordinates.length === 2) {
+        marker(
+          [place.location.coordinates[0], place.location.coordinates[1]],
+          this.markerIcon
+        )
+          .addTo(this.map)
+          .addEventListener('click', () => {
+            console.log('CLICK');
+          })
+          .bindTooltip(place.name);
+      }
+    });
   }
 
   onMapReady(map: L.Map) {
     this.map = map;
-    this.initMarker();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const request = this._plaveRepo.getAllPlaces();
+    request.pipe(this._scavenger.collectByKey('get-places')).subscribe(
+      (response) => {
+        console.log(response);
+        this.initMarker(response.places);
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  ngOnDestroy(): void {}
 }
