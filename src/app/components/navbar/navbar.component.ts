@@ -7,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   showDropdown = false;
+  burgerActive = false;
 
   constructor() {}
+
+  onToggleBurger() {
+    this.burgerActive = !this.burgerActive;
+  }
 
   onToggleDropdown() {
     this.showDropdown = !this.showDropdown;

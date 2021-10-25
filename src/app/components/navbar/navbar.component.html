@@ -3,7 +3,7 @@
     <a class="navbar-item" routerLink="/home">
       <h3><strong>Rando</strong></h3>
     </a>
-    <a role="button" class="navbar-burger is-active" aria-label="menu" aria-expanded="true" data-target="hike-navbar">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="true" data-target="hike-navbar" [class.is-active]="burgerActive" (click)="onToggleBurger()">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -11,7 +11,7 @@
   </div>
 
 
-  <div class="navbar-menu" id="hike-navbar">
+  <div class="navbar-menu" id="hike-navbar" [class.is-active]="burgerActive">
     <div class="navbar-start">
 
     <div class="navbar-item has-dropdown" [class.is-active]="showDropdown">
