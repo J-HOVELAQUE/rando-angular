@@ -7,9 +7,13 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
-import { FormBuilder } from '@angular/forms';
+import { Observable, Subscription, Subject } from 'rxjs';
 import { IRecordedPlace } from '../../../models/place';
+
+interface ICoords {
+  lat: string;
+  long: string;
+}
 
 @Component({
   selector: 'app-set-location-modal',
@@ -20,15 +24,17 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   @Input() openModalSwitcher: Observable<void>;
   @Input() place: IRecordedPlace;
 
+  reinitMarker = new Subject<void>();
+
   isOpen = false;
-  coordForm = this._formBuilder.group({
-    lat: [''],
-    long: [''],
-  });
+  coords: ICoords = {
+    lat: '0',
+    long: '0',
+  };
 
   private _openModalListener: Subscription;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor() {}
 
   onClose() {
     this.isOpen = false;
@@ -41,21 +47,22 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this._openModalListener = this.openModalSwitcher.subscribe(() => {
       this.isOpen = true;
+      this.reinitMarker.next();
     });
   }
 
   ngOnChanges(change: SimpleChanges): void {
-    if (change.place && this.place.location.coordinates.length === 2) {
-      this.coordForm.setValue({
-        lat: this.place.location.coordinates[0],
-        long: this.place.location.coordinates[1],
-      });
-      return;
+    // this.reinitMarker.next();
+    if (change.place && this.place) {
+      if (this.place.location.coordinates.length === 0) {
+        this.coords.lat = '0';
+        this.coords.long = '0';
+        return;
+      }
+
+      this.coords.lat = this.place.location.coordinates[0].toString();
+      this.coords.long = this.place.location.coordinates[1].toString();
     }
-    this.coordForm.setValue({
-      lat: '0',
-      long: '0',
-    });
   }
 
   ngOnDestroy(): void {
