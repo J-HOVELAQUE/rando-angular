@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { PlaceListComponent } from './place-list.component';
 import { PlaceCardComponent } from './components/place-card/place-card.component';
@@ -39,6 +40,7 @@ import { SetLocationMapComponent } from './components/set-location-map/set-locat
     ReactiveFormsModule,
     NgbPopoverModule,
     MatSelectModule,
+    LeafletModule,
   ],
   exports: [PlaceListComponent],
 })

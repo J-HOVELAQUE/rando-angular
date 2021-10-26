@@ -5,8 +5,6 @@ import { Scavenger } from '@wishtack/rx-scavenger';
 import { Subject } from 'rxjs';
 import { IRecordedPlace } from 'src/app/models/place';
 
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-map-place-location',
   templateUrl: './map-place-location.component.html',
