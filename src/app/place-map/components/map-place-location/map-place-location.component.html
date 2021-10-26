@@ -5,4 +5,7 @@
   [style.display]="showMap"
   >
 </div>
-<app-select-hike-modal [openFromParent]="openSelectHikeModal.asObservable()"></app-select-hike-modal>
+<app-select-hike-modal
+[openFromParent]="openSelectHikeModal.asObservable()"
+[place]="selectedPlace"
+></app-select-hike-modal>

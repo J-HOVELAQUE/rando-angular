@@ -16,6 +16,7 @@ export class MapPlaceLocationComponent implements OnInit, OnDestroy {
   map: Map;
   openSelectHikeModal = new Subject<void>();
   showMap = 'block';
+  selectedPlace: IRecordedPlace;
   private _scavenger = new Scavenger(this);
 
   markerIcon = {
@@ -37,11 +38,7 @@ export class MapPlaceLocationComponent implements OnInit, OnDestroy {
     center: latLng([46.132, 6.592]),
   };
 
-  constructor(
-    private _plaveRepo: PlaceRepoService,
-    private _router: Router,
-    private _zone: NgZone
-  ) {}
+  constructor(private _plaveRepo: PlaceRepoService, private _zone: NgZone) {}
 
   initMarker(places: IRecordedPlace[]) {
     places.forEach((place) => {
@@ -51,14 +48,15 @@ export class MapPlaceLocationComponent implements OnInit, OnDestroy {
           this.markerIcon
         )
           .addTo(this.map)
-          .addEventListener('click', () => this.onSelectPlace())
+          .addEventListener('click', () => this.onSelectPlace(place))
           .bindTooltip(place.name);
       }
     });
   }
 
-  onSelectPlace() {
+  onSelectPlace(place: IRecordedPlace) {
     this._zone.run(() => {
+      this.selectedPlace = place;
       this.openSelectHikeModal.next();
     });
   }
