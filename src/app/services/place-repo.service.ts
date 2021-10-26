@@ -13,11 +13,15 @@ interface IGetAllPlacesAnswer {
   places: IRecordedPlace[];
 }
 
+interface ICoordinates {
+  lat: string;
+  long: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class PlaceRepoService {
-  // private _urlApi = 'http://localhost:3000/place';
   private _urlApi = `${environment.api_url}/place`;
 
   constructor(private http: HttpClient) {}
@@ -44,5 +48,9 @@ export class PlaceRepoService {
 
   public deletePlace(placeId: string) {
     return this.http.delete(`${this._urlApi}/${placeId}`);
+  }
+
+  public setPlaceLocation(coords: ICoordinates, placeId: string) {
+    return this.http.put(`${this._urlApi}/${placeId}/location`, coords);
   }
 }
