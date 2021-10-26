@@ -40,8 +40,9 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
     this.isOpen = false;
   }
 
-  onChangeCoordinates(coords: any) {
-    console.log('CHANGE', coords);
+  onChangeCoordinates(coords: ICoords) {
+    this.coords.lat = coords.lat;
+    this.coords.long = coords.long;
   }
 
   ngOnInit(): void {
@@ -52,7 +53,6 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(change: SimpleChanges): void {
-    // this.reinitMarker.next();
     if (change.place && this.place) {
       if (this.place.location.coordinates.length === 0) {
         this.coords.lat = '0';
