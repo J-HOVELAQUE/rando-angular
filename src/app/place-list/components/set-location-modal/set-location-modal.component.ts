@@ -21,6 +21,10 @@ export class SetLocationModalComponent implements OnInit, OnDestroy {
     this.isOpen = false;
   }
 
+  onChangeCoordinates(coords: any) {
+    console.log('CHANGE', coords);
+  }
+
   ngOnInit(): void {
     this._openModalListener = this.openModalSwitcher.subscribe(() => {
       this.isOpen = true;

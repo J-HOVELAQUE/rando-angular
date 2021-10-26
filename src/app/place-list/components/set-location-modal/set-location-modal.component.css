@@ -12,23 +12,30 @@
   border-radius: 5px;
 }
 
+.input-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+}
+
 .modal-title {
   color: brown;
 }
 
 .modal-label {
-  margin-left: 10px;
+  text-align: center;
+  margin: 10px;
+  color: brown;
 }
 
 .modal-input {
-  margin-right: 10px;
+  margin-bottom: 10px;
   border: grey solid 1px;
-}
-
-.modal-input-area {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
 }
 
 /* Chrome, Safari, Edge, Opera */

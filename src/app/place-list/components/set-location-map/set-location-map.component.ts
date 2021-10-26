@@ -1,5 +1,20 @@
-import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
-import { latLng, tileLayer, marker, icon, Map } from 'leaflet';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  NgZone,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  latLng,
+  tileLayer,
+  marker,
+  icon,
+  Map,
+  LeafletMouseEvent,
+} from 'leaflet';
 import { PlaceRepoService } from 'src/app/services/place-repo.service';
 import { Scavenger } from '@wishtack/rx-scavenger';
 import { Subject } from 'rxjs';
@@ -12,6 +27,8 @@ import { IRecordedPlace } from 'src/app/models/place';
 })
 export class SetLocationMapComponent implements OnInit {
   map: Map;
+
+  @Output() changeCoordinates = new EventEmitter();
 
   markerIcon = {
     icon: icon({
@@ -36,6 +53,10 @@ export class SetLocationMapComponent implements OnInit {
 
   initMarker() {
     marker([46.132, 6.592], this.markerIcon).addTo(this.map);
+  }
+
+  onClickOnMap(event: LeafletMouseEvent) {
+    this.changeCoordinates.emit(event.latlng);
   }
 
   onMapReady(map: L.Map) {
