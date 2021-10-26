@@ -18,7 +18,8 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
 
   createNewPlace = new Subject<void>();
   createNewHike = new Subject<void>();
-  placeWhereCreateNewHike: IRecordedPlace;
+  setLocation = new Subject<void>();
+  clickedPlace: IRecordedPlace;
 
   constructor(private _placeRepo: PlaceRepoService) {}
 
@@ -37,8 +38,13 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onCreateHike(place: IRecordedPlace) {
-    this.placeWhereCreateNewHike = place;
+    this.clickedPlace = place;
     this.createNewHike.next();
+  }
+
+  onSetLocation(place: IRecordedPlace) {
+    this.clickedPlace = place;
+    this.setLocation.next();
   }
 
   ngOnInit(): void {

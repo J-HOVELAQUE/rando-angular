@@ -36,6 +36,7 @@ export class PlaceCardComponent implements OnInit, OnDestroy {
 
   @Output() refreshFromChild = new EventEmitter<void>();
   @Output() createNewHike = new EventEmitter();
+  @Output() setLocation = new EventEmitter();
 
   faPen = faPen;
   faTrash = faTrash;
@@ -64,6 +65,10 @@ export class PlaceCardComponent implements OnInit, OnDestroy {
 
   onCreateNewHike() {
     this.createNewHike.emit(this.place);
+  }
+
+  onChangeLocation() {
+    this.setLocation.emit(this.place);
   }
 
   onDeletePlace() {

@@ -16,6 +16,8 @@ import { SelectParticipantsComponent } from '../components/select-participants/s
 
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from '@angular/material/select';
+import { SetLocationModalComponent } from './components/set-location-modal/set-location-modal.component';
+import { SetLocationMapComponent } from './components/set-location-map/set-location-map.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
     HikePopoverComponent,
     CreateHikeModalComponent,
     SelectParticipantsComponent,
+    SetLocationModalComponent,
+    SetLocationMapComponent,
   ],
   imports: [
     CommonModule,
