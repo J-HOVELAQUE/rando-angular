@@ -5,7 +5,7 @@ import { IRecordedPlace } from 'src/app/models/place';
 import { IRecordedParticipant } from 'src/app/models/participant';
 import { HikeRepoService } from 'src/app/services/hike-repo.service';
 
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Scavenger } from '@wishtack/rx-scavenger';
 
 @Component({
@@ -28,12 +28,12 @@ export class CreateHikeModalComponent implements OnInit, OnDestroy {
   ) {}
 
   newHikeForm = this._formBuilder.group({
-    date: [''],
-    durationInMinutes: [''],
-    elevationInMeters: [''],
-    distanceInMeters: [''],
-    startingAltitude: [''],
-    arrivalAltitude: [''],
+    date: ['', Validators.required],
+    durationInMinutes: ['', Validators.required],
+    elevationInMeters: ['', Validators.required],
+    distanceInMeters: ['', Validators.required],
+    startingAltitude: ['', Validators.required],
+    arrivalAltitude: ['', Validators.required],
     description: [''],
   });
 

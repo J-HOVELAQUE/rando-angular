@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { latLng, tileLayer, marker, polygon, circle, icon, Map } from 'leaflet';
+import { latLng, tileLayer, marker, icon, Map } from 'leaflet';
 import { PlaceRepoService } from 'src/app/services/place-repo.service';
 import { Scavenger } from '@wishtack/rx-scavenger';
 
