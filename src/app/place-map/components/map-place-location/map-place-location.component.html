@@ -2,4 +2,7 @@
   leaflet
   [leafletOptions]="options"
   (leafletMapReady)="onMapReady($event)"
-></div>
+  [style.display]="showMap"
+  >
+</div>
+<app-select-hike-modal [openFromParent]="openSelectHikeModal.asObservable()"></app-select-hike-modal>

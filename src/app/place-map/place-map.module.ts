@@ -5,9 +5,10 @@ import { MapPlaceLocationComponent } from './components/map-place-location/map-p
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { SelectHikeModalComponent } from './components/select-hike-modal/select-hike-modal.component';
 
 @NgModule({
-  declarations: [PlaceMapComponent, MapPlaceLocationComponent],
+  declarations: [PlaceMapComponent, MapPlaceLocationComponent, SelectHikeModalComponent],
   imports: [CommonModule, LeafletModule, NgbPopoverModule],
   exports: [PlaceMapComponent],
 })

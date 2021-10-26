@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { latLng, tileLayer, marker, icon, Map } from 'leaflet';
 import { PlaceRepoService } from 'src/app/services/place-repo.service';
 import { Scavenger } from '@wishtack/rx-scavenger';
-
+import { Subject } from 'rxjs';
 import { IRecordedPlace } from 'src/app/models/place';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map-place-location',
@@ -12,6 +14,8 @@ import { IRecordedPlace } from 'src/app/models/place';
 })
 export class MapPlaceLocationComponent implements OnInit, OnDestroy {
   map: Map;
+  openSelectHikeModal = new Subject<void>();
+  showMap = 'block';
   private _scavenger = new Scavenger(this);
 
   markerIcon = {
@@ -33,7 +37,11 @@ export class MapPlaceLocationComponent implements OnInit, OnDestroy {
     center: latLng([46.132, 6.592]),
   };
 
-  constructor(private _plaveRepo: PlaceRepoService) {}
+  constructor(
+    private _plaveRepo: PlaceRepoService,
+    private _router: Router,
+    private _zone: NgZone
+  ) {}
 
   initMarker(places: IRecordedPlace[]) {
     places.forEach((place) => {
@@ -43,11 +51,15 @@ export class MapPlaceLocationComponent implements OnInit, OnDestroy {
           this.markerIcon
         )
           .addTo(this.map)
-          .addEventListener('click', () => {
-            console.log('CLICK');
-          })
+          .addEventListener('click', () => this.onSelectPlace())
           .bindTooltip(place.name);
       }
+    });
+  }
+
+  onSelectPlace() {
+    this._zone.run(() => {
+      this.openSelectHikeModal.next();
     });
   }
 
