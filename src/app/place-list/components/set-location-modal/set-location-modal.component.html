@@ -1,7 +1,7 @@
 <div class="modal" [class.is-active]="isOpen">
   <div class="modal-background" (click)="onClose()"></div>
   <div class="modal-card">
-    <form>
+    <form [formGroup]="coordForm">
       <header class="modal-card-head">
         <p class="modal-card-title modal-title">Changer les coordonnées de {{place?.name}}</p>
       </header>
@@ -14,11 +14,11 @@
         <div class="input-box">
           <div class="input-field">
             <label for="lat" class="modal-label">Latitude</label>
-            <input type="number" id="lat" name="lat" class="modal-input">
+            <input type="number" id="lat" name="lat" class="modal-input" formControlName="lat">
           </div>
           <div class="input-field">
             <label for="long" class="modal-label">Longitude</label>
-            <input type="number" id="long" name="long" class="modal-input">
+            <input type="number" id="long" name="long" class="modal-input" formControlName="long">
           </div>
         </div>
           
