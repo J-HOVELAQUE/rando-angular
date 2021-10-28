@@ -27,6 +27,7 @@
 <app-set-location-modal
 [openModalSwitcher]="setLocation.asObservable()"
 [place]="clickedPlace"
+(refreshPlaces)="refreshPlaces()"
 ></app-set-location-modal>
 
 <app-hike-popover></app-hike-popover>

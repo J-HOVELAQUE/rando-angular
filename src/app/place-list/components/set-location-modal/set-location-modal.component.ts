@@ -3,8 +3,10 @@ import {
   OnInit,
   OnDestroy,
   Input,
+  Output,
   OnChanges,
   SimpleChanges,
+  EventEmitter,
 } from '@angular/core';
 
 import { Observable, Subscription, Subject } from 'rxjs';
@@ -25,6 +27,8 @@ interface ICoords {
 export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   @Input() openModalSwitcher: Observable<void>;
   @Input() place: IRecordedPlace;
+
+  @Output() refreshPlaces = new EventEmitter<void>();
 
   reinitMarker = new Subject<void>();
 
@@ -50,7 +54,11 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
     );
 
     request.pipe(this._scavenger.collectByKey('set-location')).subscribe(
-      (response) => console.log(response),
+      (response) => {
+        console.log(response);
+        this.isOpen = false;
+        this.refreshPlaces.emit();
+      },
       (error) => console.log(error)
     );
   }
