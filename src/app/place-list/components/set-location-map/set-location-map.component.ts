@@ -66,18 +66,18 @@ export class SetLocationMapComponent implements OnInit, OnDestroy, OnChanges {
 
   initMarker() {
     setTimeout(() => {
-      this.map.invalidateSize();
+      this.map.invalidateSize({ pan: false, animate: false });
       if (this.marker) {
         this.marker.remove();
       }
 
-      this.map.flyTo([
-        parseInt(this.coords.lat, 10),
-        parseInt(this.coords.long, 10),
-      ]);
+      this.map.setView(
+        [parseFloat(this.coords.lat), parseFloat(this.coords.long)],
+        12
+      );
 
       this.marker = marker(
-        [parseInt(this.coords.lat, 10), parseInt(this.coords.long, 10)],
+        [parseFloat(this.coords.lat), parseFloat(this.coords.long)],
         this.markerIcon
       ).addTo(this.map);
     }, 10);
@@ -95,7 +95,6 @@ export class SetLocationMapComponent implements OnInit, OnDestroy, OnChanges {
   onMapReady(map: L.Map) {
     this.map = map;
     this.initMarker();
-    this.map.invalidateSize();
   }
 
   ngOnInit(): void {
