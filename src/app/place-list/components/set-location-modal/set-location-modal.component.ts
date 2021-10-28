@@ -44,6 +44,7 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   constructor(private _placeRepo: PlaceRepoService) {}
 
   onClose() {
+    this.refreshPlaces.emit();
     this.isOpen = false;
   }
 
@@ -56,8 +57,7 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
     request.pipe(this._scavenger.collectByKey('set-location')).subscribe(
       (response) => {
         console.log(response);
-        this.isOpen = false;
-        this.refreshPlaces.emit();
+        this.onClose();
       },
       (error) => console.log(error)
     );
