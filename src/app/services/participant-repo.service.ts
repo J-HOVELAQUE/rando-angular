@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { IRecordedParticipant } from '../models/participant';
+import {
+  IRecordedParticipant,
+  IParticipantToCreate,
+} from '../models/participant';
 
 interface IGetParticipantsResponse {
   message: string;
@@ -19,5 +22,9 @@ export class ParticipantRepoService {
 
   getAllParticipants() {
     return this._http.get<IGetParticipantsResponse>(this._endpoint);
+  }
+
+  createParticipant(newParticipant: IParticipantToCreate) {
+    return this._http.post(this._endpoint, newParticipant);
   }
 }
