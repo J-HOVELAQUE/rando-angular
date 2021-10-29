@@ -23,13 +23,13 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
 
   participants: IRecordedParticipant[];
   editHikeForm = this._formBuilder.group({
-    date: [''],
-    durationInMinutes: [''],
-    elevationInMeters: [''],
-    distanceInMeters: [''],
-    startingAltitude: [''],
-    arrivalAltitude: [''],
-    description: [''],
+    date: [this.store.activeHike?.date],
+    durationInMinutes: [this.store.activeHike?.durationInMinutes],
+    elevationInMeters: [this.store.activeHike?.elevationInMeters],
+    distanceInMeters: [this.store.activeHike?.distanceInMeters],
+    startingAltitude: [this.store.activeHike?.startingAltitude],
+    arrivalAltitude: [this.store.activeHike?.arrivalAltitude],
+    description: [this.store.activeHike?.description],
   });
 
   onCloseModal() {
