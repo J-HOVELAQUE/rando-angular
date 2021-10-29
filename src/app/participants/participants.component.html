@@ -3,9 +3,12 @@
   <button class="button hiking-button" (click)="onCreateNewParticipant()">Ajouter un participant</button>
 
   <div class="display-zone">
-    <app-participants-menu class="participants-menu"></app-participants-menu>
+    <app-participants-menu class="participants-menu" [refreshParticipantSwitch]="refreshParticipantList.asObservable()"></app-participants-menu>
     <app-participant-data class="participant-data"></app-participant-data>
   </div>
 
-  <app-create-participant-modal [openSwitcher]="openCreateParticipantModal.asObservable()"></app-create-participant-modal>
+  <app-create-participant-modal
+  [openSwitcher]="openCreateParticipantModal.asObservable()"
+  (refreshParticipants)="onRefreshParticipantList()"
+  ></app-create-participant-modal>
 </div>

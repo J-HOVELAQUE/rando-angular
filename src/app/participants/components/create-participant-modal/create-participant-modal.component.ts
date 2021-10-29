@@ -1,4 +1,11 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
@@ -12,6 +19,8 @@ import { Scavenger } from '@wishtack/rx-scavenger';
 })
 export class CreateParticipantModalComponent implements OnInit, OnDestroy {
   @Input() openSwitcher: Observable<void>;
+
+  @Output() refreshParticipants = new EventEmitter<void>();
 
   private _openSwitcherListener: Subscription;
   private _scavenger = new Scavenger(this);
@@ -31,6 +40,7 @@ export class CreateParticipantModalComponent implements OnInit, OnDestroy {
 
   onCloseModal() {
     this.isOpen = false;
+    this.refreshParticipants.emit();
   }
 
   onSubmitNewParticipant() {
@@ -39,7 +49,7 @@ export class CreateParticipantModalComponent implements OnInit, OnDestroy {
     );
 
     request.pipe(this._scavenger.collectByKey('record-participant')).subscribe(
-      (response) => console.log(response),
+      () => this.onCloseModal(),
       (error) => console.error(error)
     );
   }

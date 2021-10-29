@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ParticipantRepoService } from 'src/app/services/participant-repo.service';
 
 import { Scavenger } from '@wishtack/rx-scavenger';
 import { IRecordedParticipant } from 'src/app/models/participant';
+
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-participants-menu',
@@ -10,12 +12,15 @@ import { IRecordedParticipant } from 'src/app/models/participant';
   styleUrls: ['./participants-menu.component.css'],
 })
 export class ParticipantsMenuComponent implements OnInit, OnDestroy {
+  @Input() refreshParticipantSwitch: Observable<void>;
+
   participants: IRecordedParticipant[];
   private _scavenger = new Scavenger(this);
+  private _refreshParticipantSwitchListener: Subscription;
 
   constructor(private _participantRepo: ParticipantRepoService) {}
 
-  ngOnInit(): void {
+  onRefreshParticipantList() {
     const request = this._participantRepo.getAllParticipants();
     request.pipe(this._scavenger.collectByKey('get-participants')).subscribe(
       (response) => {
@@ -26,5 +31,15 @@ export class ParticipantsMenuComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {}
+  ngOnInit(): void {
+    this.onRefreshParticipantList();
+    this._refreshParticipantSwitchListener =
+      this.refreshParticipantSwitch.subscribe(() => {
+        this.onRefreshParticipantList();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this._refreshParticipantSwitchListener.unsubscribe();
+  }
 }
