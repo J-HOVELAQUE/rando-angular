@@ -5,8 +5,11 @@ import { IRecordedParticipant } from 'src/app/models/participant';
 import { IRecordedHike } from 'src/app/models/hike';
 
 import { StoreService } from 'src/app/services/store.service';
+import { HikeRepoService } from 'src/app/services/hike-repo.service';
 
 import { Observable, Subscription } from 'rxjs';
+
+import { Scavenger } from '@wishtack/rx-scavenger';
 
 @Component({
   selector: 'app-edit-hike-modal',
@@ -18,8 +21,13 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
 
   isOpen = false;
   private _openModalSwitcherListener: Subscription;
+  private _scavenger = new Scavenger(this);
 
-  constructor(private _formBuilder: FormBuilder, public store: StoreService) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    public store: StoreService,
+    private _hikeRepo: HikeRepoService
+  ) {}
 
   participants: IRecordedParticipant[];
   editHikeForm = this._formBuilder.group({
@@ -39,6 +47,17 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
 
   onEditNewHike() {
     console.log(this.editHikeForm.value);
+    const request = this._hikeRepo.updateHike(
+      this.editHikeForm.value,
+      this.store.activeHike._id
+    );
+    request.pipe(this._scavenger.collectByKey('update-hike')).subscribe(
+      (response) => {
+        console.log(response);
+        this.onCloseModal();
+      },
+      (error) => console.error(error)
+    );
   }
 
   ngOnInit(): void {
