@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
 import { ParticipantRepoService } from 'src/app/services/participant-repo.service';
@@ -23,10 +23,10 @@ export class CreateParticipantModalComponent implements OnInit, OnDestroy {
   ) {}
 
   createParticipantForm = this._formBuilder.group({
-    dateOfBirth: [''],
-    email: [''],
-    firstname: [''],
-    name: [''],
+    dateOfBirth: ['', Validators.required],
+    email: ['', [Validators.email, Validators.required]],
+    firstname: ['', Validators.required],
+    name: ['', Validators.required],
   });
 
   onCloseModal() {
