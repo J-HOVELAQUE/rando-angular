@@ -3,11 +3,6 @@
     Liste des participants
   </p>
   <ul class="menu-list">
-    <li><a>Machin</a></li>
-    <li><a>Machin</a></li>
-    <li><a>Machin</a></li>
-    <li><a>Machin</a></li>
-    <li><a>Machin</a></li>
-    <li><a>Machin</a></li>
+    <li *ngFor="let participant of participants"><a>{{participant.firstname}} {{participant.name}}</a></li>
   </ul>
 </aside>
