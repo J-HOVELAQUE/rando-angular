@@ -54,6 +54,10 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
     request.pipe(this._scavenger.collectByKey('update-hike')).subscribe(
       (response) => {
         console.log(response);
+        this.store.activeHike = {
+          ...this.store.activeHike,
+          ...this.editHikeForm.value,
+        };
         this.onCloseModal();
       },
       (error) => console.error(error)
