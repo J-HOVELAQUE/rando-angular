@@ -1,0 +1,44 @@
+.validate-modal-button {
+  color: white;
+  background-color: brown;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.abort-modal-button {
+  color: white;
+  background-color: grey;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.modal-title {
+  color: brown;
+}
+
+.modal-label {
+  margin-left: 10px;
+}
+
+.modal-input {
+  margin-right: 10px;
+  border: grey solid 1px;
+}
+
+.modal-input-area {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

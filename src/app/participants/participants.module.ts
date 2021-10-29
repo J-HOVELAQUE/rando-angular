@@ -9,6 +9,9 @@ import { ElevationByTimeComponent } from './components/elevation-by-time/elevati
 import { DistanceByTimeComponent } from './components/distance-by-time/distance-by-time.component';
 
 import { ParticipantsRoutingModule } from './participants-routing.module';
+import { CreateParticipantModalComponent } from './components/create-participant-modal/create-participant-modal.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,9 @@ import { ParticipantsRoutingModule } from './participants-routing.module';
     TotalsComponent,
     ElevationByTimeComponent,
     DistanceByTimeComponent,
+    CreateParticipantModalComponent,
   ],
-  imports: [CommonModule, ParticipantsRoutingModule],
+  imports: [CommonModule, ParticipantsRoutingModule, ReactiveFormsModule],
   exports: [ParticipantsComponent],
 })
 export class ParticipantsModule {}
