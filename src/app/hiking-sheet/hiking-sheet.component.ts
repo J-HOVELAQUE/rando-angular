@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StoreService } from '../services/store.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-hiking-sheet',
@@ -9,8 +10,15 @@ import { StoreService } from '../services/store.service';
 })
 export class HikingSheetComponent implements OnInit {
   picture: string;
+  openEditHikeModalSwitcher = new Subject<void>();
 
   constructor(public store: StoreService) {}
+
+  onEditHike() {
+    if (this.store.activeHike) {
+      this.openEditHikeModalSwitcher.next();
+    }
+  }
 
   ngOnInit(): void {
     if (this.store.activeHike?.place?.picture) {

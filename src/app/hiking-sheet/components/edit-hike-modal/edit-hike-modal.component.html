@@ -1,0 +1,85 @@
+<div class="modal" [class.is-active]="isOpen">
+  <div class="modal-background" (click)="onCloseModal()"></div>
+  <form [formGroup]="editHikeForm" (ngSubmit)="onEditNewHike()">
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title modal-title">Editer randonnée randonnée à: {{store.activeHike?.place?.name}}</p>
+      </header>
+      <section class="modal-card-body">
+
+        <div class="modal-input-area">
+          <label class="modal-label" for="hikeDate">
+            Date
+          </label>
+          <input type="date" class="modal-input" id="hikeDate" name="hikeDate" formControlName="date" />
+        </div>
+
+        <div class="modal-input-area">
+          <label class="modal-label" for="hikeDuration">
+            Durée
+          </label>
+
+          <input class="modal-input" type="number" id="hikeDuration" name="hikeDuration"
+            formControlName="durationInMinutes" />
+        </div>
+
+        <div class="modal-input-area">
+          <label class="modal-label" for="hikeElevation">
+            Dénivelé
+          </label>
+          <input type="number" class="modal-input" id="hikeElevation" name="hikeElevation"
+            formControlName="elevationInMeters" />
+        </div>
+
+        <div class="modal-input-area">
+          <label class="modal-label" for="hikeDistance">
+            Distance
+          </label>
+          <input type="number" class="modal-input" id="hikeDistance" name="hikeDistance"
+            formControlName="distanceInMeters" />
+        </div>
+
+        <div class="modal-input-area">
+          <label class="modal-label" for="hikeElevationDeparture">
+            Altitude de départ
+          </label>
+          <input type="number" class="modal-input" id="hikeElevationDeparture" name="hikeElevationDeparture"
+            formControlName="startingAltitude" />
+        </div>
+
+        <div class="modal-input-area">
+          <label class="modal-label" for="hikeElevationArrival">
+            Altitude de d'arrivée
+          </label>
+          <input type="number" class="modal-input" id="hikeElevationArrival" name="hikeElevationArrival"
+            formControlName="arrivalAltitude" />
+        </div>
+
+        <div class="modal-input-area">
+          <label class="modal-label" for="hikeDescription">
+            Description
+          </label>
+          <textarea rows={5} cols={23} class="modal-input" id="hikeDescription" name="hikeDescription"
+            formControlName="description"></textarea>
+        </div>
+
+        <!-- <app-select-participants (changeSelectedParticipants)="onChangeSelectedParticipants($event)">
+
+        </app-select-participants> -->
+
+
+      </section>
+      <footer class="modal-card-foot">
+
+        <button class="button validate-modal-button" type="submit" [disabled]="!editHikeForm.valid">
+          Valider
+        </button>
+
+        <button class="button abort-modal-button" type="button" (click)="onCloseModal()">
+          Annuler
+        </button>
+
+      </footer>
+    </div>
+  </form>
+</div>

@@ -1,7 +1,8 @@
 <div>
     <div class="display">
       <h1 class="title is-1 hiking-title">Randonnée: {{store.activeHike?.place?.name}}</h1>
-      <button class="button hiking-button" 
+      <button class="button hiking-button"
+        (click)="onEditHike()"
         >
         Editer cette sortie
       </button>
@@ -52,4 +53,6 @@
         </div>
       </div>
     </div>
+
+    <app-edit-hike-modal [openModalSwitcher]="openEditHikeModalSwitcher.asObservable()"></app-edit-hike-modal>
   </div>
