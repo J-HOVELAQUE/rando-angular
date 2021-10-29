@@ -27,4 +27,8 @@ export class HikeRepoService {
   public createHike(newHike: IHikeToRecord) {
     return this.http.post(this._urlApi, newHike);
   }
+
+  public updateHike(hikeData: IHikeToRecord, hikeId: string) {
+    return this.http.put(`${this._urlApi}/${hikeId}`, hikeData);
+  }
 }
