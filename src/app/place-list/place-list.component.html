@@ -14,11 +14,10 @@
     <form class="control-item">
       <label for="select-mountain" class="select-mountain-label">Par massif</label>
       <div class="select">
-        <select id="select-mountain" name="select-mountain">
-          <option>Massif 1</option>
-          <option>Massif 2</option>
-          <option>Massif 3</option>
-          <option>Massif 4</option>
+        <select id="select-mountain" name="select-mountain" (change)="onSearchByMountain($event)">
+          <option value="">Tous</option>
+          <option *ngFor="let mountain of mountainNames" [value]="mountain">{{mountain}}</option>
+          
         </select>
       </div>
     </form>

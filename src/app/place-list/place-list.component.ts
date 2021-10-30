@@ -19,6 +19,7 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
   createNewHike = new Subject<void>();
   setLocation = new Subject<void>();
   clickedPlace: IRecordedPlace;
+  mountainNames: string[];
 
   researchForm = new FormGroup({
     researchName: new FormControl(['']),
@@ -33,6 +34,10 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
       .subscribe((answer) => {
         console.log(answer);
         this.places = answer.places;
+        const mountainNames = new Set(
+          answer.places.map((place) => place.mountainLocation)
+        );
+        this.mountainNames = Array.from(mountainNames);
       });
   }
 
@@ -78,6 +83,23 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
     }
     const regex = new RegExp(this.researchForm.value.researchName, 'gi');
     this.places = this.places.filter((place) => place.name.match(regex));
+  }
+
+  onSearchByMountain(event: any) {
+    if (!event.target.value) {
+      this.refreshPlaces();
+      return;
+    }
+
+    const request = this._placeRepo.getAllPlaces();
+    request
+      .pipe(this._scavenger.collectByKey('getAllPlaces'))
+      .subscribe((answer) => {
+        console.log(answer);
+        this.places = answer.places.filter(
+          (place) => place.mountainLocation === event.target.value
+        );
+      });
   }
 
   ngOnInit(): void {
