@@ -6,7 +6,7 @@
 .hiking-button {
   color: white;
   background-color: brown;
-  margin: 0px auto 20px 50px;
+  /* margin: 0px 0px 20px 50px; */
   border-radius: 5px;
 }
 
@@ -15,4 +15,25 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: row;
+}
+
+.control-item {
+  margin: 0px 20px 0px 20px;
+}
+
+.select-mountain-label {
+  margin: 4px;
 }
