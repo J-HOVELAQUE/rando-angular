@@ -3,8 +3,8 @@
 
   <div class="control-panel">
     <button class="button hiking-button control-item" (click)="onCreatePlace()">Ajouter un lieux</button>
-    <button class="button control-item">Par nom</button>
-    <button class="button control-item">Par altitude</button>
+    <button class="button control-item" (click)="onSortPlacesByName()">Par nom</button>
+    <button class="button control-item" (click)="onSortPlacesByAltitude()">Par altitude</button>
 
     <form class="search-form control-item">
       <input class="input" type="text">
@@ -22,9 +22,7 @@
         </select>
       </div>
     </form>
-
   </div>
-
 
   <div class="card-place-container" >
     <div *ngFor="let place of places">
@@ -36,8 +34,6 @@
       ></app-place-card>
     </div>
   </div>
-
-
 
   <app-create-place-modal
   [events]="createNewPlace.asObservable()"

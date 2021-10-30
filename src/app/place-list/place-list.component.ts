@@ -33,6 +33,24 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
       });
   }
 
+  onSortPlacesByName() {
+    function compareByName(a: IRecordedPlace, b: IRecordedPlace) {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    }
+    this.places.sort(compareByName);
+  }
+
+  onSortPlacesByAltitude() {
+    function compareByAltitude(a: IRecordedPlace, b: IRecordedPlace) {
+      if (a.altitudeInMeters < b.altitudeInMeters) return -1;
+      if (a.altitudeInMeters > b.altitudeInMeters) return 1;
+      return 0;
+    }
+    this.places.sort(compareByAltitude);
+  }
+
   onCreatePlace() {
     this.createNewPlace.next();
   }
