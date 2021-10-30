@@ -6,8 +6,8 @@
     <button class="button control-item" (click)="onSortPlacesByName()">Par nom</button>
     <button class="button control-item" (click)="onSortPlacesByAltitude()">Par altitude</button>
 
-    <form class="search-form control-item">
-      <input class="input" type="text">
+    <form class="search-form control-item" [formGroup]="researchForm" (ngSubmit)="onSearchByName()">
+      <input class="input" type="text" formControlName="researchName">
       <button class="button">Rechercher</button>
     </form>
 

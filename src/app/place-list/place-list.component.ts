@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { PlaceRepoService } from '../services/place-repo.service';
-
 import { IRecordedPlace } from '../models/place';
-
 import { Scavenger } from '@wishtack/rx-scavenger';
-
 import { Subject } from 'rxjs';
+
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-place-list',
@@ -20,6 +19,10 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
   createNewHike = new Subject<void>();
   setLocation = new Subject<void>();
   clickedPlace: IRecordedPlace;
+
+  researchForm = new FormGroup({
+    researchName: new FormControl(['']),
+  });
 
   constructor(private _placeRepo: PlaceRepoService) {}
 
@@ -63,6 +66,18 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
   onSetLocation(place: IRecordedPlace) {
     this.clickedPlace = place;
     this.setLocation.next();
+  }
+
+  onSearchByName() {
+    if (
+      !this.researchForm.value.researchName ||
+      this.researchForm.value.researchName === ''
+    ) {
+      this.refreshPlaces();
+      return;
+    }
+    const regex = new RegExp(this.researchForm.value.researchName, 'gi');
+    this.places = this.places.filter((place) => place.name.match(regex));
   }
 
   ngOnInit(): void {
