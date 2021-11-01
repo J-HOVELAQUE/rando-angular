@@ -54,6 +54,7 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
     const participantsId = this.participants.map(
       (participant) => participant._id
     );
+
     const request = this._hikeRepo.updateHike(
       {
         ...this.editHikeForm.value,
@@ -68,6 +69,7 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
         this.store.activeHike = {
           ...this.store.activeHike,
           ...this.editHikeForm.value,
+          ...{ participants: this.participants },
         };
         this.onCloseModal();
       },
