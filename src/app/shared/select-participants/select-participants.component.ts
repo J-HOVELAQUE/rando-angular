@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  OnChanges,
   Output,
   OnDestroy,
   EventEmitter,
@@ -20,7 +21,7 @@ import { Scavenger } from '@wishtack/rx-scavenger';
 export class SelectParticipantsComponent implements OnInit, OnDestroy {
   @Output() changeSelectedParticipants = new EventEmitter();
 
-  participants = new FormControl();
+  participants = new FormControl([]);
   participantList: IRecordedParticipant[] = [];
 
   private _scavenger = new Scavenger(this);
@@ -29,6 +30,7 @@ export class SelectParticipantsComponent implements OnInit, OnDestroy {
 
   onChangeSelectedParticipants(value: IRecordedParticipant[]) {
     this.changeSelectedParticipants.emit(value);
+    console.log('PARTICIPANTS', this.participants.value);
   }
 
   ngOnInit(): void {
@@ -43,6 +45,8 @@ export class SelectParticipantsComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  ngOnChangeParticipant(): void {}
 
   ngOnDestroy(): void {}
 }
