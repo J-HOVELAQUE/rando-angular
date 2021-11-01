@@ -15,10 +15,10 @@ import { HikePopoverComponent } from './components/hike-popover/hike-popover.com
 import { CreateHikeModalComponent } from '../components/create-hike-modal/create-hike-modal.component';
 
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatSelectModule } from '@angular/material/select';
 import { SetLocationModalComponent } from './components/set-location-modal/set-location-modal.component';
 import { SetLocationMapComponent } from './components/set-location-map/set-location-map.component';
 import { SelectParticipantsModule } from '../shared/select-participants/select-participants.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -38,9 +38,9 @@ import { SelectParticipantsModule } from '../shared/select-participants/select-p
     FontAwesomeModule,
     ReactiveFormsModule,
     NgbPopoverModule,
-    MatSelectModule,
     LeafletModule,
     SelectParticipantsModule,
+    MatProgressSpinnerModule,
   ],
   exports: [PlaceListComponent],
 })

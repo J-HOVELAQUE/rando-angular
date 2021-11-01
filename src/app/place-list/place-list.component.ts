@@ -20,6 +20,7 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
   setLocation = new Subject<void>();
   clickedPlace: IRecordedPlace;
   mountainNames: string[];
+  isLoading = true;
 
   researchForm = new FormGroup({
     researchName: new FormControl(['']),
@@ -28,16 +29,18 @@ export class PlaceListComponent implements OnInit, OnDestroy, OnChanges {
   constructor(private _placeRepo: PlaceRepoService) {}
 
   refreshPlaces() {
+    this.isLoading = true;
+
     const request = this._placeRepo.getAllPlaces();
     request
       .pipe(this._scavenger.collectByKey('getAllPlaces'))
       .subscribe((answer) => {
-        console.log(answer);
         this.places = answer.places;
         const mountainNames = new Set(
           answer.places.map((place) => place.mountainLocation)
         );
         this.mountainNames = Array.from(mountainNames);
+        this.isLoading = false;
       });
   }
 

@@ -24,14 +24,24 @@
   </div>
 
   <div class="card-place-container" >
-    <div *ngFor="let place of places">
-      <app-place-card
-      [place]="place"
-      (refreshFromChild)="refreshPlaces()"
-      (createNewHike)="onCreateHike($event)"
-      (setLocation)="onSetLocation($event)"
-      ></app-place-card>
-    </div>
+
+    <span *ngIf="isLoading;then spinner else cards"></span>
+
+    <ng-template #spinner>
+      <mat-spinner></mat-spinner>
+    </ng-template>
+
+    <ng-template #cards>
+      <div *ngFor="let place of places">
+        <app-place-card
+        [place]="place"
+        (refreshFromChild)="refreshPlaces()"
+        (createNewHike)="onCreateHike($event)"
+        (setLocation)="onSetLocation($event)"
+        ></app-place-card>
+      </div>
+    </ng-template>
+
   </div>
 
   <app-create-place-modal
