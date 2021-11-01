@@ -63,9 +63,12 @@
             formControlName="description"></textarea>
         </div>
 
-        <!-- <app-select-participants (changeSelectedParticipants)="onChangeSelectedParticipants($event)">
+        <app-select-participants
+        [initialParticipants]="store.activeHike?.participants"
+        (changeSelectedParticipants)="onChangeParticipants($event)"
+        >
 
-        </app-select-participants> -->
+        </app-select-participants>
 
 
       </section>

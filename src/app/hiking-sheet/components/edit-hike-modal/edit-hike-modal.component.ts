@@ -29,7 +29,7 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
     private _hikeRepo: HikeRepoService
   ) {}
 
-  participants: IRecordedParticipant[];
+  participants = this.store.activeHike?.participants;
   editHikeForm = this._formBuilder.group({
     date: [this.store.activeHike?.date],
     durationInMinutes: [this.store.activeHike?.durationInMinutes],
@@ -40,6 +40,10 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
     description: [this.store.activeHike?.description],
   });
 
+  onChangeParticipants(participants: IRecordedParticipant[]): void {
+    this.participants = participants;
+  }
+
   onCloseModal() {
     this.isOpen = false;
     this.store.activeHike.place.name;
@@ -47,10 +51,17 @@ export class EditHikeModalComponent implements OnInit, OnDestroy {
 
   onEditNewHike() {
     console.log(this.editHikeForm.value);
+    const participantsId = this.participants.map(
+      (participant) => participant._id
+    );
     const request = this._hikeRepo.updateHike(
-      this.editHikeForm.value,
+      {
+        ...this.editHikeForm.value,
+        ...{ participants: participantsId },
+      },
       this.store.activeHike._id
     );
+
     request.pipe(this._scavenger.collectByKey('update-hike')).subscribe(
       (response) => {
         console.log(response);
