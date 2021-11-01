@@ -3,7 +3,6 @@ import {
   OnInit,
   OnDestroy,
   OnChanges,
-  NgZone,
   Input,
   Output,
   EventEmitter,
@@ -17,10 +16,7 @@ import {
   LeafletMouseEvent,
   Marker,
 } from 'leaflet';
-import { PlaceRepoService } from 'src/app/services/place-repo.service';
-import { Scavenger } from '@wishtack/rx-scavenger';
-import { Subject, Observable, Subscription } from 'rxjs';
-import { IRecordedPlace } from 'src/app/models/place';
+import { Observable, Subscription } from 'rxjs';
 
 interface ICoords {
   lat: string;
@@ -35,7 +31,7 @@ interface ICoords {
 export class SetLocationMapComponent implements OnInit, OnDestroy, OnChanges {
   map: Map;
 
-  @Input() coords: ICoords;
+  @Input() coords: ICoords | undefined;
   @Input() reinitMarkerSwitcher: Observable<void>;
   @Output() changeCoordinates = new EventEmitter<ICoords>();
 
@@ -71,15 +67,18 @@ export class SetLocationMapComponent implements OnInit, OnDestroy, OnChanges {
         this.marker.remove();
       }
 
-      this.map.setView(
-        [parseFloat(this.coords.lat), parseFloat(this.coords.long)],
-        12
-      );
-
-      this.marker = marker(
-        [parseFloat(this.coords.lat), parseFloat(this.coords.long)],
-        this.markerIcon
-      ).addTo(this.map);
+      if (this.coords) {
+        this.map.setView(
+          [parseFloat(this.coords.lat), parseFloat(this.coords.long)],
+          12
+        );
+        this.marker = marker(
+          [parseFloat(this.coords.lat), parseFloat(this.coords.long)],
+          this.markerIcon
+        ).addTo(this.map);
+      } else {
+        this.map.setView([46.132, 6.592], 5);
+      }
     }, 10);
   }
 
@@ -89,7 +88,13 @@ export class SetLocationMapComponent implements OnInit, OnDestroy, OnChanges {
       long: event.latlng.lng.toString(),
     });
 
-    this.marker.setLatLng([event.latlng.lat, event.latlng.lng]);
+    this.coords = {
+      lat: event.latlng.lat.toString(),
+      long: event.latlng.lng.toString(),
+    };
+    // this.marker.setLatLng([event.latlng.lat, event.latlng.lng]);
+
+    this.initMarker();
   }
 
   onMapReady(map: L.Map) {

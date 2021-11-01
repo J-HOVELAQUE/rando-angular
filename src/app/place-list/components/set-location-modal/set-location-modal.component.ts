@@ -33,10 +33,7 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   reinitMarker = new Subject<void>();
 
   isOpen = false;
-  coords: ICoords = {
-    lat: '0',
-    long: '0',
-  };
+  coords: ICoords | undefined = undefined;
 
   private _openModalListener: Subscription;
   private _scavenger = new Scavenger(this);
@@ -49,6 +46,10 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onSubmitNewCoordinates() {
+    if (!this.coords) {
+      return;
+    }
+
     const request = this._placeRepo.setPlaceLocation(
       this.coords,
       this.place._id
@@ -64,8 +65,10 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onChangeCoordinates(coords: ICoords) {
-    this.coords.lat = coords.lat;
-    this.coords.long = coords.long;
+    this.coords = {
+      lat: coords.lat,
+      long: coords.long,
+    };
   }
 
   ngOnInit(): void {
@@ -77,14 +80,18 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(change: SimpleChanges): void {
     if (change.place && this.place) {
-      if (this.place.location.coordinates.length === 0) {
-        this.coords.lat = '0';
-        this.coords.long = '0';
-        return;
-      }
+      // if (this.place.location.coordinates.length === 0) {
+      //   this.coords.lat = '0';
+      //   this.coords.long = '0';
+      //   return;
+      // }
 
-      this.coords.lat = this.place.location.coordinates[0].toString();
-      this.coords.long = this.place.location.coordinates[1].toString();
+      if (this.place.location.coordinates.length === 2) {
+        this.coords = {
+          lat: this.place.location.coordinates[0].toString(),
+          long: this.place.location.coordinates[1].toString(),
+        };
+      }
     }
   }
 
