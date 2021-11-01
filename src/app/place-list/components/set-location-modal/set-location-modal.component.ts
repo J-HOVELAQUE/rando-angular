@@ -43,6 +43,7 @@ export class SetLocationModalComponent implements OnInit, OnDestroy, OnChanges {
   onClose() {
     this.refreshPlaces.emit();
     this.isOpen = false;
+    this.coords = undefined;
   }
 
   onSubmitNewCoordinates() {
