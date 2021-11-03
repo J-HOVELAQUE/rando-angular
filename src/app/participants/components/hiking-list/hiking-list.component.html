@@ -1,1 +1,14 @@
-<p>hiking-list works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Lieux</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hike of hikes" class="active">
+      <td>{{hike.date | date:"longDate"}}</td>
+      <td>{{hike.place.name}}</td>
+    </tr>
+  </tbody>
+</table>
