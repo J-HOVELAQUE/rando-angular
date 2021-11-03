@@ -5,7 +5,7 @@ import { IRecordedHike, IHikeToRecord } from '../models/hike';
 
 import { environment } from 'src/environments/environment';
 
-interface IGetByPlaceAnswer {
+interface IGetByPlaceOrUserAnswer {
   message: string;
   hikes: IRecordedHike[];
 }
@@ -19,8 +19,14 @@ export class HikeRepoService {
   constructor(private http: HttpClient) {}
 
   public getHikeByPlace(placeId: string) {
-    return this.http.get<IGetByPlaceAnswer>(
+    return this.http.get<IGetByPlaceOrUserAnswer>(
       `${this._urlApi}/byPlace/${placeId}`
+    );
+  }
+
+  public getHikeByUser(userId: string) {
+    return this.http.get<IGetByPlaceOrUserAnswer>(
+      `${this._urlApi}/byUser/${userId}`
     );
   }
 
