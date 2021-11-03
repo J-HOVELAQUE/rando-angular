@@ -31,6 +31,16 @@ export class ParticipantsMenuComponent implements OnInit, OnDestroy {
     );
   }
 
+  onLoadParticipantData(participantId: string) {
+    const request = this._participantRepo.getParticipantData(participantId);
+    request
+      .pipe(this._scavenger.collectByKey('get-participant-data'))
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.error(error)
+      );
+  }
+
   ngOnInit(): void {
     this.onRefreshParticipantList();
     this._refreshParticipantSwitchListener =

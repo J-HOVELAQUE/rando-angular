@@ -3,6 +3,10 @@
     Liste des participants
   </p>
   <ul class="menu-list">
-    <li *ngFor="let participant of participants" class="participant-name"><a>{{participant.firstname}} {{participant.name}}</a></li>
+    <li *ngFor="let participant of participants"
+    class="participant-name">
+    <a (click)="onLoadParticipantData(participant._id)">
+      {{participant.firstname}} {{participant.name}}
+    </a></li>
   </ul>
 </aside>
