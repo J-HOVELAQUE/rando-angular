@@ -33,7 +33,6 @@ const routes: Routes = [
         redirectTo: '/participant/hikes',
         pathMatch: 'full',
       },
-      // { path: '**', redirectTo: '/hikes', pathMatch: 'full' },
     ],
   },
 ];

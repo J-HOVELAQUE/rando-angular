@@ -15,29 +15,29 @@ export class DistanceByTimeComponent implements OnInit {
 
   private _lookIfParticipantInStoreChange: Subscription;
 
-  lineChartData: ChartDataSets[];
-  lineChartLabels: Label[];
+  barChartData: ChartDataSets[];
+  barChartLabels: Label[];
 
-  lineChartOptions = {
+  barChartOptions = {
     responsive: true,
   };
 
-  lineChartColors: Color[] = [
+  barChartColors: Color[] = [
     {
       borderColor: 'black',
       backgroundColor: 'rgba(255,255,0,0.28)',
     },
   ];
 
-  lineChartLegend = true;
-  lineChartPlugins = [];
+  barChartLegend = true;
+  barChartPlugins = [];
 
   initData() {
-    this.lineChartLabels = this.store.participantData.data.map((dataMonth) => {
+    this.barChartLabels = this.store.participantData.data.map((dataMonth) => {
       return `${dataMonth._id.month}/${dataMonth._id.year}`;
     });
 
-    this.lineChartData = [
+    this.barChartData = [
       {
         data: this.store.participantData.data.map(
           (dataMonth) => dataMonth.total_dist
