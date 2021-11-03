@@ -27,4 +27,8 @@ export class ParticipantRepoService {
   createParticipant(newParticipant: IParticipantToCreate) {
     return this._http.post(this._endpoint, newParticipant);
   }
+
+  getParticipantData(participantId: string) {
+    return this._http.get(`${this._endpoint}/${participantId}/data`);
+  }
 }
