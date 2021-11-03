@@ -28,6 +28,12 @@ const routes: Routes = [
         path: 'distance',
         component: DistanceByTimeComponent,
       },
+      {
+        path: 'participant',
+        redirectTo: '/participant/hikes',
+        pathMatch: 'full',
+      },
+      // { path: '**', redirectTo: '/hikes', pathMatch: 'full' },
     ],
   },
 ];

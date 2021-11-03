@@ -13,8 +13,7 @@ const routes: Routes = [
   { path: 'hike', component: HikingSheetComponent },
   { path: 'participant', component: ParticipantsComponent },
   { path: 'home', component: HomeComponent },
-  // { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
