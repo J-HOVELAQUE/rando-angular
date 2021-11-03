@@ -45,13 +45,13 @@ export class ParticipantsMenuComponent implements OnInit, OnDestroy {
       .pipe(this._scavenger.collectByKey('get-participant-data'))
       .subscribe(
         (response) => {
-          console.log(response);
           this._store.participantData = {
             participantId: participantId,
             participantFirstname: participantFirstname,
             participantName: participantName,
             data: response.data,
           };
+          this._store.changeParticipantData();
         },
         (error) => console.error(error)
       );

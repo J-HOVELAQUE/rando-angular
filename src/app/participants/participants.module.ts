@@ -12,9 +12,7 @@ import { ParticipantsRoutingModule } from './participants-routing.module';
 import { CreateParticipantModalComponent } from './components/create-participant-modal/create-participant-modal.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
-import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +24,6 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     ElevationByTimeComponent,
     DistanceByTimeComponent,
     CreateParticipantModalComponent,
-    BarChartComponent,
-    LineChartComponent,
   ],
   imports: [
     CommonModule,

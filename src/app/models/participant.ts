@@ -21,8 +21,8 @@ export interface IParticipantDataForAMonth {
 }
 
 export interface IParticipantData {
-  participantId: string;
-  participantName: string;
-  participantFirstname: string;
+  participantId: string | undefined;
+  participantName: string | undefined;
+  participantFirstname: string | undefined;
   data: IParticipantDataForAMonth[];
 }
