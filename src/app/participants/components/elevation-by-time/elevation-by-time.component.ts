@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ChartDataSets, ChartOptions } from 'chart.js';
+import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 
 import { StoreService } from 'src/app/services/store.service';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class ElevationByTimeComponent implements OnInit, OnDestroy {
   constructor(public store: StoreService) {}
 
-  lookIfParticipantInStoreChange: Subscription;
+  private _lookIfParticipantInStoreChange: Subscription;
 
   lineChartData: ChartDataSets[];
   lineChartLabels: Label[];
@@ -42,19 +42,20 @@ export class ElevationByTimeComponent implements OnInit, OnDestroy {
         data: this.store.participantData.data.map(
           (dataMonth) => dataMonth.total_elev
         ),
-        label: `Dénivelé de ${this.store.participantData.participantFirstname} ${this.store.participantData.participantName} par mois en mêtre`,
+        label: `Dénivelé de ${this.store.participantData.participantFirstname} ${this.store.participantData.participantName} par mois en mètres`,
       },
     ];
   }
 
   ngOnInit(): void {
     this.initData();
-    this.lookIfParticipantInStoreChange =
+    this._lookIfParticipantInStoreChange =
       this.store.participantAsChanged.subscribe(() => {
-        console.log('Participant change!!!!!!');
         this.initData();
       });
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this._lookIfParticipantInStoreChange.unsubscribe();
+  }
 }
