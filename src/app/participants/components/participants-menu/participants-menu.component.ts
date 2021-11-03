@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ParticipantRepoService } from 'src/app/services/participant-repo.service';
+import { StoreService } from 'src/app/services/store.service';
 
 import { Scavenger } from '@wishtack/rx-scavenger';
 import { IRecordedParticipant } from 'src/app/models/participant';
@@ -18,7 +19,10 @@ export class ParticipantsMenuComponent implements OnInit, OnDestroy {
   private _scavenger = new Scavenger(this);
   private _refreshParticipantSwitchListener: Subscription;
 
-  constructor(private _participantRepo: ParticipantRepoService) {}
+  constructor(
+    private _participantRepo: ParticipantRepoService,
+    private _store: StoreService
+  ) {}
 
   onRefreshParticipantList() {
     const request = this._participantRepo.getAllParticipants();
@@ -31,12 +35,24 @@ export class ParticipantsMenuComponent implements OnInit, OnDestroy {
     );
   }
 
-  onLoadParticipantData(participantId: string) {
+  onLoadParticipantData(
+    participantId: string,
+    participantName: string,
+    participantFirstname: string
+  ) {
     const request = this._participantRepo.getParticipantData(participantId);
     request
       .pipe(this._scavenger.collectByKey('get-participant-data'))
       .subscribe(
-        (response) => console.log(response),
+        (response) => {
+          console.log(response);
+          this._store.participantData = {
+            participantId: participantId,
+            participantFirstname: participantFirstname,
+            participantName: participantName,
+            data: response.data,
+          };
+        },
         (error) => console.error(error)
       );
   }

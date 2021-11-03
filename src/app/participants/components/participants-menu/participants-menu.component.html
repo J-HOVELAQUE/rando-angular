@@ -5,7 +5,7 @@
   <ul class="menu-list">
     <li *ngFor="let participant of participants"
     class="participant-name">
-    <a (click)="onLoadParticipantData(participant._id)">
+    <a (click)="onLoadParticipantData(participant._id,participant.name,participant.firstname )">
       {{participant.firstname}} {{participant.name}}
     </a></li>
   </ul>
