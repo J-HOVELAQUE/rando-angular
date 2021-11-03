@@ -15,6 +15,7 @@ import { ParticipantsModule } from './participants/participants.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],

@@ -18,7 +18,6 @@ export class ParticipantsComponent implements OnInit {
 
   onRefreshParticipantList() {
     this.refreshParticipantList.next();
-    console.log('REFRESH!!!!!');
   }
 
   ngOnInit(): void {}

@@ -1,8 +1,8 @@
 <aside class="menu">
-  <p class="menu-label">
+  <p class="menu-label participant-label">
     Liste des participants
   </p>
   <ul class="menu-list">
-    <li *ngFor="let participant of participants"><a>{{participant.firstname}} {{participant.name}}</a></li>
+    <li *ngFor="let participant of participants" class="participant-name"><a>{{participant.firstname}} {{participant.name}}</a></li>
   </ul>
 </aside>

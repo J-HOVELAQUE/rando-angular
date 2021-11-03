@@ -92,7 +92,6 @@ export class SetLocationMapComponent implements OnInit, OnDestroy, OnChanges {
       lat: event.latlng.lat.toString(),
       long: event.latlng.lng.toString(),
     };
-    // this.marker.setLatLng([event.latlng.lat, event.latlng.lng]);
 
     this.initMarker();
   }
