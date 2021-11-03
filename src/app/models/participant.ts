@@ -9,7 +9,7 @@ export interface IRecordedParticipant extends IParticipantToCreate {
   _id: string;
 }
 
-interface IParticipantDataForAMonth {
+export interface IParticipantDataForAMonth {
   _id: {
     year: number;
     month: number;

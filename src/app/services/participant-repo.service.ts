@@ -5,11 +5,17 @@ import { environment } from 'src/environments/environment';
 import {
   IRecordedParticipant,
   IParticipantToCreate,
+  IParticipantDataForAMonth,
 } from '../models/participant';
 
 interface IGetParticipantsResponse {
   message: string;
   places: IRecordedParticipant[];
+}
+
+interface IGetParticipantDataResponse {
+  message: string;
+  data: IParticipantDataForAMonth[];
 }
 
 @Injectable({
@@ -29,6 +35,8 @@ export class ParticipantRepoService {
   }
 
   getParticipantData(participantId: string) {
-    return this._http.get(`${this._endpoint}/${participantId}/data`);
+    return this._http.get<IGetParticipantDataResponse>(
+      `${this._endpoint}/${participantId}/data`
+    );
   }
 }
