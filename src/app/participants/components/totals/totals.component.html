@@ -1,1 +1,7 @@
-<p>totals works! {{store?.participantData | json}}</p>
+<div *ngIf="store.participantData.participantId">
+  <h4 class="title is-5">Cumul total pour {{store.participantData.participantFirstname}} {{store.participantData.participantName}}</h4>
+  <p>Nombre de randonnées: {{totals.totalHikes}}</p>
+  <p>Dénivelé total: {{totals.totalElevation}} m</p>
+  <p>Distance totale: {{totals.totalDistance}} m</p>
+  <p>Durée totale: {{totals.totalDuration}} min</p>
+</div>
