@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HikeRepoService } from 'src/app/services/hike-repo.service';
 import { StoreService } from 'src/app/services/store.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { IRecordedHike } from 'src/app/models/hike';
 
@@ -17,7 +18,11 @@ export class HikingListComponent implements OnInit, OnDestroy {
   private _scavenger = new Scavenger(this);
   private _changeParticipantListener: Subscription;
 
-  constructor(public store: StoreService, private _hikeRepo: HikeRepoService) {}
+  constructor(
+    public store: StoreService,
+    private _hikeRepo: HikeRepoService,
+    private _router: Router
+  ) {}
 
   onLoadHikeList() {
     if (this.store.participantData.participantId) {
@@ -31,6 +36,11 @@ export class HikingListComponent implements OnInit, OnDestroy {
           (error) => console.log(error)
         );
     }
+  }
+
+  onLoadHike(hike: IRecordedHike) {
+    this.store.activeHike = hike;
+    this._router.navigate(['/hike']);
   }
 
   ngOnInit(): void {

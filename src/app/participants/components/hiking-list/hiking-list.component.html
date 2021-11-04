@@ -6,7 +6,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let hike of hikes" class="active">
+    <tr *ngFor="let hike of hikes" (click)="onLoadHike(hike)">
       <td>{{hike.date | date:"longDate"}}</td>
       <td>{{hike.place.name}}</td>
     </tr>
