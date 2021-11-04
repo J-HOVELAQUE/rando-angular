@@ -1,16 +1,21 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th><a title="Trier par date" (click)="onSortHikesByDate()">Date</a></th>
-      <th><a title="Trier par nom de lieu" (click)="onSortHikesByPlaceName()">Lieux</a></th>
-      <th><a title="Trier par nom de massif" (click)="onSortHikesByPlaceMountain()">Massif</a></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let hike of hikes" (click)="onLoadHike(hike)" class="hike-list-item">
-      <td>{{hike.date | date:"longDate"}}</td>
-      <td>{{hike.place.name}}</td>
-      <td>{{hike.place.mountainLocation}}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngIf="store.participantData.participantId">
+  <h4 class="title is-5">Randonnées de {{store.participantData.participantFirstname}}
+    {{store.participantData.participantName}}</h4>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><a title="Trier par date" (click)="onSortHikesByDate()">Date</a></th>
+        <th><a title="Trier par nom de lieu" (click)="onSortHikesByPlaceName()">Lieux</a></th>
+        <th><a title="Trier par nom de massif" (click)="onSortHikesByPlaceMountain()">Massif</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hike of hikes" (click)="onLoadHike(hike)" class="hike-list-item">
+        <td>{{hike.date | date:"longDate"}}</td>
+        <td>{{hike.place.name}}</td>
+        <td>{{hike.place.mountainLocation}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,4 +1,4 @@
-<div class="chart-wrapper">
+<div class="chart-wrapper" *ngIf="store.participantData.participantId">
   <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
     [colors]="barChartColors" [legend]="barChartLegend" chartType="bar" [plugins]="barChartPlugins">
   </canvas>
