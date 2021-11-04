@@ -3,12 +3,14 @@
     <tr>
       <th>Date</th>
       <th>Lieux</th>
+      <th>Massif</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let hike of hikes" (click)="onLoadHike(hike)">
+    <tr *ngFor="let hike of hikes" (click)="onLoadHike(hike)" class="hike-list-item">
       <td>{{hike.date | date:"longDate"}}</td>
       <td>{{hike.place.name}}</td>
+      <td>{{hike.place.mountainLocation}}</td>
     </tr>
   </tbody>
 </table>

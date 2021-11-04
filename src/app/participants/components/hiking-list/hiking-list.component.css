@@ -1,0 +1,7 @@
+.hike-list-item {
+  cursor: pointer;
+}
+
+.hike-list-item:hover {
+  background-color: rgb(245, 245, 245);
+}
