@@ -25,7 +25,7 @@ export class ElevationByTimeComponent implements OnInit, OnDestroy {
   barChartColors: Color[] = [
     {
       borderColor: 'black',
-      backgroundColor: 'rgba(255,255,0,0.28)',
+      backgroundColor: 'skyblue',
     },
   ];
 

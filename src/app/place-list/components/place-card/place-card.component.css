@@ -1,5 +1,5 @@
 .card-place-title {
-  color: brown;
+  color: skyblue;
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
@@ -8,7 +8,7 @@
 .card-place {
   width: 18rem;
   margin: 15px;
-  border: brown 1px solid;
+  border: skyblue 1px solid;
 }
 
 .card-place-picture {
@@ -24,26 +24,26 @@
 
 .card-button {
   border-radius: 100%;
-  color: brown;
-  border: brown solid 1px;
+  color: skyblue;
+  border: skyblue solid 1px;
   background-color: white;
 }
 
 .card-button:hover {
-  background-color: brown;
+  background-color: skyblue;
   color: white;
 }
 
 .card-place-popover-header {
-  color: brown;
+  color: skyblue;
 }
 
 .card-place-popover {
-  border: brown solid 1px;
+  border: skyblue solid 1px;
 }
 
 .card-place-adding-hike-button {
-  color: brown;
+  color: skyblue;
   border-radius: 5px;
   margin: 10px 5px 0px 5px;
 }

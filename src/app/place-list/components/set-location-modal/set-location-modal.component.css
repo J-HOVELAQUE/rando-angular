@@ -1,6 +1,6 @@
 .validate-modal-button {
   color: white;
-  background-color: brown;
+  background-color: skyblue;
   padding: 5px;
   border-radius: 5px;
 }
@@ -24,13 +24,13 @@
 }
 
 .modal-title {
-  color: brown;
+  color: skyblue;
 }
 
 .modal-label {
   text-align: center;
   margin: 10px;
-  color: brown;
+  color: skyblue;
 }
 
 .modal-input {

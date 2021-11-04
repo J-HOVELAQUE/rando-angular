@@ -1,11 +1,11 @@
 .hiking-title {
   text-align: center;
-  color: brown;
+  color: skyblue;
 }
 
 .hiking-button {
   color: white;
-  background-color: brown;
+  background-color: skyblue;
   margin: 0px auto 20px 50px;
   border-radius: 5px;
 }
@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: brown 2px solid;
+  border: skyblue 2px solid;
   border-radius: 5px;
 }
 
@@ -42,7 +42,7 @@
 
 .hiking-sheet-bottom-title {
   margin-bottom: 30px;
-  color: brown;
+  color: skyblue;
 }
 
 @media all and (min-width: 900px) {

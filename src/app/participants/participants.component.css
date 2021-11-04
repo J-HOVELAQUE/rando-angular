@@ -1,11 +1,11 @@
 .hiking-title {
   text-align: center;
-  color: brown;
+  color: skyblue;
 }
 
 .hiking-button {
   color: white;
-  background-color: brown;
+  background-color: skyblue;
   margin: 0px auto 20px 50px;
   border-radius: 5px;
 }
