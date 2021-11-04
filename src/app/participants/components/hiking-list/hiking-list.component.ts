@@ -52,6 +52,15 @@ export class HikingListComponent implements OnInit, OnDestroy {
     this.hikes.sort(compareByPlaceName);
   }
 
+  onSortHikesByPlaceMountain() {
+    function compareByPlaceMoutain(a: IRecordedHike, b: IRecordedHike) {
+      if (a.place.mountainLocation < b.place.mountainLocation) return -1;
+      if (a.place.mountainLocation > b.place.mountainLocation) return 1;
+      return 0;
+    }
+    this.hikes.sort(compareByPlaceMoutain);
+  }
+
   ngOnInit(): void {
     this._changeParticipantListener = this.store.participantAsChanged.subscribe(
       () => {
